@@ -64,7 +64,7 @@ class Cell:
         return hash((self.row, self.column))
 
     def __repr__(self):
-        return f"Cell {self.row},{self.column}: \n{self.links}"
+        return f"Cell {self.row},{self.column}: \n"
 
 
 def is_cell(cell: "Cell") -> bool:
