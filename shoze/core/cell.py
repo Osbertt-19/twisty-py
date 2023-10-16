@@ -1,4 +1,6 @@
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, cast
+
+Distances = Dict["Cell", int]
 
 
 class Cell:
@@ -26,6 +28,20 @@ class Cell:
         if self.west:
             neighbours.append(self.west)
         return neighbours
+
+    @property
+    def distances(self) -> Distances:
+        distances: Distances = {self: 0}
+        frontier: List[Cell] = [self]
+        while len(frontier) > 0:
+            new_frontier = []
+            for cell in frontier:
+                for linked_cell in cell.links:
+                    if not linked_cell in distances.keys():
+                        distances[linked_cell] = cast(int, distances[cell]) + 1
+                        new_frontier.append(linked_cell)
+                frontier = new_frontier
+        return distances
 
     def __init__(self, row: int, column: int) -> None:
         if row is None or row < 0:
