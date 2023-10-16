@@ -1,6 +1,6 @@
 import unittest
 
-from shoze.models.cell import Cell, is_cell
+from shoze.core.cell import Cell, is_cell
 
 
 class CellTestCase(unittest.TestCase):

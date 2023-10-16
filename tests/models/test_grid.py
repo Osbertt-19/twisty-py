@@ -1,8 +1,8 @@
 from typing import cast
 import unittest
-from shoze.models.cell import Cell
+from shoze.core.cell import Cell
 
-from shoze.models.grid import Grid
+from shoze.core.grid import Grid
 
 ROW = 4
 COLUMN = 5
