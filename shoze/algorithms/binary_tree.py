@@ -1,8 +1,10 @@
 from random import choice
-from shoze.models.grid import Grid
+from shoze.algorithms.base import Algorithm
+from shoze.core.grid import Grid
 
 
-class BinaryTree:
+class BinaryTree(Algorithm):
+    @staticmethod
     def on(grid: Grid) -> None:
         for cell in grid.each_cell():
             neighbours = []

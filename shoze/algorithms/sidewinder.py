@@ -1,10 +1,11 @@
 from random import choice, randint
 from typing import cast
-from shoze.models.cell import Cell, is_cell
-from shoze.models.grid import Grid
+from shoze.algorithms.base import Algorithm
+from shoze.core.cell import Cell, is_cell
+from shoze.core.grid import Grid
 
 
-class SideWinder:
+class SideWinder(Algorithm):
     def on(grid: Grid):
         for row in grid.each_row():
             run = []
