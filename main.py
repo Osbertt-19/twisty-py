@@ -1,7 +1,3 @@
 from shoze.core.maze import Algorithms, Maze
 
-maze = Maze(4, 4).on(Algorithms.BINARY_TREE).display_ascii()
-
-cell = maze.grid[0, 0]
-distances = cell.distances
-print(distances)
+maze = Maze(10, 20).on(Algorithms.BINARY_TREE).show_distances((0, 0)).display_ascii()

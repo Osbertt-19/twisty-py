@@ -1,6 +1,7 @@
 from random import randrange
 from typing import List, Optional, Tuple, cast
 from shoze.core.cell import Cell
+from shoze.core.utils import Point
 
 Key = Tuple[int, int]
 
@@ -26,6 +27,7 @@ class Grid:
         self._rows: int = rows
         self._columns: int = columns
         self._grid: List[List[Cell]] = self.prepare_grid()
+        self._show_distances: bool = False
         self.configure_cells()
 
     def prepare_grid(self):
@@ -64,6 +66,13 @@ class Grid:
         column = randrange(0, self.columns)
         cell: Cell = self[row, column]
         return cell
+
+    def show_distances(self, start: Point):
+        start = self[start]
+        self._show_distances = True
+        distances = start.distances
+        for cell in self.each_cell():
+            cell.content = distances[cell]
 
     def __repr__(self):
         return f"Grid of {self.rows} rows and {self.columns} columns"

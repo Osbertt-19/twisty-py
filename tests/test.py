@@ -1,7 +1,7 @@
 import unittest
 
-from tests.models.test_cell import CellTestCase
-from tests.models.test_grid import GridTestCase
+from tests.core.test_cell import CellTestCase
+from tests.core.test_grid import GridTestCase
 
 
 def suite():
@@ -12,3 +12,6 @@ def suite():
 
 if __name__ == "__main__":
     unittest.TextTestRunner().run(suite())
+
+
+# python3 -m unittest -v tests/test.py

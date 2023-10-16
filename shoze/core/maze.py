@@ -2,7 +2,9 @@ from enum import Enum
 from time import gmtime, strftime
 from shoze.algorithms.binary_tree import BinaryTree
 from shoze.algorithms.sidewinder import SideWinder
+from shoze.core.cell import Cell
 from shoze.core.grid import Grid
+from shoze.core.utils import Point
 from shoze.exporters.ascii import Ascii
 from shoze.exporters.colors import BLACK, WHITE, Color
 from shoze.exporters.png import Png
@@ -22,6 +24,10 @@ class Maze:
             BinaryTree.on(self.grid)
         if algorithm == Algorithms.SIDEWINDER:
             SideWinder.on(self.grid)
+        return self
+
+    def show_distances(self, start: Point) -> "Maze":
+        self.grid.show_distances(start)
         return self
 
     def display_ascii(self) -> "Maze":

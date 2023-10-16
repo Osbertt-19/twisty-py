@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, cast
+from typing import Dict, List, Optional, Union, cast
 
 Distances = Dict["Cell", int]
 
@@ -51,6 +51,7 @@ class Cell:
 
         self._row: int = row
         self._column: int = column
+        self.content: Union[int, None] = None
         self.north: Optional[Cell] = None
         self.south: Optional[Cell] = None
         self.east: Optional[Cell] = None

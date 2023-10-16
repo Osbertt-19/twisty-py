@@ -1,6 +1,8 @@
+from typing import Dict
 import unittest
 
-from shoze.core.cell import Cell, is_cell
+from shoze.core.cell import Cell, Distances, is_cell
+from shoze.core.maze import Algorithms, Maze
 
 
 class CellTestCase(unittest.TestCase):
@@ -57,8 +59,16 @@ class CellTestCase(unittest.TestCase):
         self.assertEqual(len(self.cell_1.links), 0)
         self.assertEqual(len(self.cell_3.links), 0)
 
+    def test_distances(self) -> None:
+        ROW = 4
+        COLUMN = 4
+        maze = Maze(ROW, COLUMN).on(Algorithms.BINARY_TREE)
+        cell = maze.grid[0, 0]
+        distances = cell.distances
+        self.assertTrue(isinstance(distances, Dict))
+        assert len(distances) == ROW * COLUMN
+        assert distances[cell] == 0
+
 
 if __name__ == "__main__":
     unittest.main()
-
-# python3 python -m unittest -v tests/test_cell.py
