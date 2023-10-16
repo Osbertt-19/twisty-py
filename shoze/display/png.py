@@ -8,11 +8,11 @@ def save_png(
     filename: str = strftime("%Y-%m-%d-%H-%M-%S", gmtime()),
     cell_size: int = 30,
 ):
-    image = render_image(grid, filename, cell_size)
+    image = _render_image(grid, filename, cell_size)
     image.save(f"png/{filename}.png", "PNG", optimize=True)
 
 
-def render_image(grid: Grid, filename: str, cell_size: int):
+def _render_image(grid: Grid, filename: str, cell_size: int):
     wall_color = (0, 0, 0)
     wall_width = 1
     image_width = (cell_size * grid.columns) + 1
