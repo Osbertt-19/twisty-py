@@ -5,8 +5,8 @@ from shoze.exporters.base import Exporter
 class Ascii(Exporter):
     @staticmethod
     def export(grid: Grid) -> None:
-        if grid._show_distances:
-            cell_width = len(str(grid.rows * grid.columns))
+        if grid.show_distances_flag:
+            cell_width = len(str(grid.size))
         else:
             cell_width = 3
         output = "+" + ("-" * cell_width + "+") * grid.columns + "\n"
@@ -14,7 +14,7 @@ class Ascii(Exporter):
             top = "|"
             bottom = "+"
             for cell in row:
-                if grid._show_distances:
+                if cell.content is not None:
                     body = " " * (cell_width - len(str(cell.content))) + str(
                         cell.content
                     )

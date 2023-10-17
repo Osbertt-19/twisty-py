@@ -1,18 +1,11 @@
-from enum import Enum
 from time import gmtime, strftime
 from shoze.algorithms.binary_tree import BinaryTree
 from shoze.algorithms.sidewinder import SideWinder
-from shoze.core.cell import Cell
 from shoze.core.grid import Grid
-from shoze.core.utils import Point
+from shoze.core.types import Algorithms, Point
 from shoze.exporters.ascii import Ascii
 from shoze.exporters.colors import BLACK, WHITE, Color
 from shoze.exporters.png import Png
-
-
-class Algorithms(Enum):
-    BINARY_TREE = 1
-    SIDEWINDER = 2
 
 
 class Maze:
@@ -26,8 +19,17 @@ class Maze:
             SideWinder.on(self.grid)
         return self
 
-    def show_distances(self, start: Point) -> "Maze":
+    def show_distances(self, start: Point = (0, 0)) -> "Maze":
         self.grid.show_distances(start)
+        return self
+
+    def not_show_distances(self) -> "Maze":
+        self.grid.not_show_distances()
+        return self
+
+    def solve(self, start: Point, end: Point) -> "Maze":
+        self.show_distances(start)
+        self.grid.solve(start, end)
         return self
 
     def display_ascii(self) -> "Maze":
