@@ -2,14 +2,15 @@ from typing import List, Optional, cast
 from shoze.algorithms.base import Algorithm
 from shoze.algorithms.binary_tree import BinaryTree
 from shoze.core.cell import Cell
-from shoze.core.grid import Grid
+from shoze.core.grid import MAX_BRIGHT, MAX_BRIGHT_INTENSITY, MAX_DARK, Grid
 from shoze.core.mazes.base import Maze
 from shoze.core.types import Distances, Point
+from shoze.exporters.colors import Color
 
 
 class StartMaze(Maze):
     def __init__(
-        self, grid: Grid, algorithm: Algorithm = BinaryTree(), start: Point = None
+        self, grid: Point, algorithm: Algorithm = BinaryTree(), start: Point = None
     ) -> None:
         super().__init__(grid, algorithm)
         self.start = self.grid[start] if start else self.grid[0, 0]
@@ -38,3 +39,17 @@ class StartMaze(Maze):
                 farthest_cell = cell
 
         return farthest_cell
+
+    def bg_for_cell(self, cell: Cell) -> Color:
+        mx = self.distances[self.farthest_cell]
+        distance = self.distances[cell]
+        if distance < mx and distance > 0:
+            intensity = (mx - distance) / mx
+            dark = round(MAX_DARK * intensity)
+            bright = round(MAX_BRIGHT + (MAX_BRIGHT_INTENSITY * intensity))
+            color: Color = (dark, bright, dark)
+        elif distance == mx:
+            color: Color = (128, 0, 0)
+        else:
+            color: Color = (0, 148, 255)
+        return color

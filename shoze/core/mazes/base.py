@@ -5,15 +5,17 @@ from shoze.algorithms.binary_tree import BinaryTree
 from shoze.algorithms.sidewinder import SideWinder
 
 from shoze.core.grid import Grid
+from shoze.core.types import Point
 
 
 class Maze(metaclass=ABCMeta):
     def __init__(
         self,
-        grid: Grid,
+        grid: Point,
         algorithm: Algorithm,
     ) -> None:
-        self.grid = grid
+        rows, columns = grid
+        self.grid = Grid(rows, columns)
         self.algorithm = algorithm
 
         if isinstance(self.algorithm, BinaryTree):

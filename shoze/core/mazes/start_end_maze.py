@@ -2,15 +2,16 @@ from typing import List, cast
 from shoze.algorithms.base import Algorithm
 from shoze.algorithms.binary_tree import BinaryTree
 from shoze.core.cell import Cell
-from shoze.core.grid import Grid
+from shoze.core.grid import MAX_BRIGHT, MAX_BRIGHT_INTENSITY, MAX_DARK, Grid
 from shoze.core.mazes.base import Maze
 from shoze.core.types import Distances, Point
+from shoze.exporters.colors import Color
 
 
 class StartEndMaze(Maze):
     def __init__(
         self,
-        grid: Grid,
+        grid: Point,
         algorithm: Algorithm = BinaryTree(),
         start: Point = None,
         end: Point = None,
@@ -18,8 +19,8 @@ class StartEndMaze(Maze):
         super().__init__(grid, algorithm)
         self.start = self.grid[start] if start else self.grid[0, 0]
         if not end:
-            row = grid.rows - 1
-            column = grid.columns - 1
+            row = self.grid.rows - 1
+            column = self.grid.columns - 1
             self.end = self.grid[row, column]
         else:
             self.end = self.grid[end]
@@ -49,3 +50,17 @@ class StartEndMaze(Maze):
                         new_frontier.append(linked_cell)
                 frontier = new_frontier
         return distances
+
+    def bg_for_cell(self, cell: Cell) -> Color:
+        mx = self.path[self.end]
+        distance = self.path[cell]
+        if distance < mx and distance > 0:
+            intensity = (mx - distance) / mx
+            dark = round(MAX_DARK * intensity)
+            bright = round(MAX_BRIGHT + (MAX_BRIGHT_INTENSITY * intensity))
+            color: Color = (dark, bright, dark)
+        elif distance == mx:
+            color: Color = (128, 0, 0)
+        else:
+            color: Color = (0, 148, 255)
+        return color
