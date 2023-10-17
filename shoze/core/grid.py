@@ -95,6 +95,7 @@ class Grid:
                 cell.content = None
 
     def solve(self, start: Point, end: Point):
+        self.show_distances(start)
         if not self.show_distances_flag:
             self.show_distances()
         self.start = self[start]
