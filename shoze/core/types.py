@@ -9,6 +9,7 @@ else:
 
 Point = Tuple[int, int]
 Distances = Dict[Cell, int]
+Key = Tuple[int, int]
 
 
 class Algorithms(Enum):

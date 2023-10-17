@@ -3,6 +3,8 @@ import unittest
 from shoze.core.cell import Cell
 
 from shoze.core.grid import Grid
+from shoze.core.maze import Maze
+from shoze.core.types import Algorithms
 
 ROW = 4
 COLUMN = 5
@@ -73,3 +75,25 @@ class GridTestCase(unittest.TestCase):
     def test_random_cell(self) -> None:
         cell = self.grid.random_cell()
         assert 0 <= cell.row < ROW and 0 <= cell.column < COLUMN
+
+
+class GridShowDistancesTestCase(unittest.TestCase):
+    def setUp(self) -> None:
+        self.grid = Maze(ROW, COLUMN).on(Algorithms.BINARY_TREE)
+
+    def test_initial_state(self) -> None:
+        grid = self.grid
+
+        self.assertFalse(grid.show_distances_flag)
+        assert grid.start is None
+        for cell in grid.each_cell():
+            assert cell.content is None
+
+    def test_final_state(self) -> None:
+        grid = self.grid
+        grid.show_distances((0, 0))
+
+        self.assertTrue(grid.show_distances_flag)
+        self.assertTrue(isinstance(grid.start, Cell))
+        for cell in grid.each_cell():
+            self.assertTrue(isinstance(cell.content, int))

@@ -1,12 +1,11 @@
 from random import randrange
 from typing import List, Optional, Tuple, cast
 from shoze.core.cell import Cell
-
+from shoze.core.types import Key
 
 from shoze.core.types import Point
 from shoze.exporters.colors import Color
 
-Key = Tuple[int, int]
 
 MAX_DARK = 210  # Dark meaning farther than or more distant than
 MAX_BRIGHT = round(
@@ -82,15 +81,14 @@ class Grid:
     def show_distances(self, start: Point) -> None:
         if not self.show_distances_flag:
             self.show_distances_flag = True
-            start_cell = self[start]
-            self.start = start_cell
-            self.distances = start_cell.distances
+            self.start = self[start]
             for cell in self.each_cell():
-                cell.content = self.distances[cell]
+                cell.content = self.start.distances[cell]
 
     def not_show_distances(self) -> None:
         if self.show_distances_flag:
             self.show_distances_flag = False
+            self.start = None
             for cell in self.each_cell():
                 cell.content = None
 
