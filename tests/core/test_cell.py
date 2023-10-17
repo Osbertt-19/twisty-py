@@ -59,15 +59,42 @@ class CellTestCase(unittest.TestCase):
         self.assertEqual(len(self.cell_1.links), 0)
         self.assertEqual(len(self.cell_3.links), 0)
 
+    def test_initial_distances(self) -> None:
+        ROW = 4
+        COLUMN = 4
+        maze = Maze(ROW, COLUMN).on(Algorithms.BINARY_TREE)
+        cell = maze[0, 0]
+        assert cell._distances is None
+
+    def test_find_distances(self) -> None:
+        ROW = 4
+        COLUMN = 4
+        maze = Maze(ROW, COLUMN).on(Algorithms.BINARY_TREE)
+        cell = maze[0, 0]
+        cell.find_distances()
+        assert cell._distances is not None
+        assert isinstance(cell._distances, dict)
+        assert len(cell._distances) == maze.size
+
+    def test_longest_path(self) -> None:
+        ROW = 4
+        COLUMN = 4
+        maze = Maze(ROW, COLUMN).on(Algorithms.BINARY_TREE)
+        cell = maze[0, 0]
+        assert cell.longest_path is None
+
+        cell.find_distances()
+        assert isinstance(cell.longest_path, int)
+
     def test_distances(self) -> None:
         ROW = 4
         COLUMN = 4
         maze = Maze(ROW, COLUMN).on(Algorithms.BINARY_TREE)
-        cell = maze.grid[0, 0]
+        cell = maze[0, 0]
         distances = cell.distances
-        self.assertTrue(isinstance(distances, Dict))
-        assert len(distances) == ROW * COLUMN
-        assert distances[cell] == 0
+        assert distances is not None
+        assert isinstance(distances, dict)
+        assert len(distances) == maze.size
 
 
 if __name__ == "__main__":

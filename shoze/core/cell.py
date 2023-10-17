@@ -49,7 +49,7 @@ class Cell:
         self._distances = distances
 
     @property
-    def longest_path(self) -> int:
+    def longest_path(self) -> Optional[int]:
         return self._longest_path
 
     def __init__(self, row: int, column: int) -> None:
