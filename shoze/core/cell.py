@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Union, cast
+from typing import Dict, List, Optional, cast
 from shoze.core.types import Distances
 
 

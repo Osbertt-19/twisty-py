@@ -1,5 +1,5 @@
 from random import randrange
-from typing import List, Optional, Tuple, Union, cast
+from typing import List, Optional, Tuple, cast
 from shoze.core.cell import Cell
 
 
@@ -38,8 +38,8 @@ class Grid:
         self._grid: List[List[Cell]] = self.prepare_grid()
         self.show_distances_flag: bool = False
         self.solved_flag: bool = False
-        self.start: Union[Cell, None] = None
-        self.end: Union[Cell, None] = None
+        self.start: Optional[Cell] = None
+        self.end: Optional[Cell] = None
         self.configure_cells()
 
     def prepare_grid(self):
