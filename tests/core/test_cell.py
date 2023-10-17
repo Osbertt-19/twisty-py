@@ -2,7 +2,7 @@ from typing import Dict
 import unittest
 
 from shoze.core.cell import Cell, Distances, is_cell
-from shoze.core.maze import Algorithms, Maze
+from shoze.core.mazes.empty_maze import Algorithms, Maze
 
 
 class CellTestCase(unittest.TestCase):

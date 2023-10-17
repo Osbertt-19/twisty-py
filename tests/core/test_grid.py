@@ -3,7 +3,7 @@ import unittest
 from shoze.core.cell import Cell
 
 from shoze.core.grid import Grid
-from shoze.core.maze import Maze
+from shoze.core.mazes.empty_maze import Maze
 from shoze.core.types import Algorithms
 
 ROW = 4
