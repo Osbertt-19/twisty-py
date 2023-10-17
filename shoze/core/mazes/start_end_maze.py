@@ -4,8 +4,8 @@ from shoze.algorithms.binary_tree import BinaryTree
 from shoze.core.cell import Cell
 from shoze.core.grid import MAX_BRIGHT, MAX_BRIGHT_INTENSITY, MAX_DARK, Grid
 from shoze.core.mazes.base import Maze
-from shoze.core.types import Distances, Point
-from shoze.exporters.colors import Color
+from shoze.utils.types import Distances, Point
+from shoze.utils.colors import Color
 
 
 class StartEndMaze(Maze):

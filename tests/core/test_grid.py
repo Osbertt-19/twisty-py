@@ -4,7 +4,7 @@ from shoze.core.cell import Cell
 
 from shoze.core.grid import Grid
 from shoze.core.mazes.empty_maze import Maze
-from shoze.core.types import Algorithms
+from shoze.utils.types import Algorithms
 
 ROW = 4
 COLUMN = 5

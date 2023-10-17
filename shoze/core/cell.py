@@ -1,5 +1,5 @@
 from typing import Dict, List, Optional, cast
-from shoze.core.types import Distances
+from shoze.utils.types import Distances
 
 
 class Cell:
@@ -28,30 +28,6 @@ class Cell:
             neighbours.append(self.west)
         return neighbours
 
-    @property
-    def distances(self) -> Distances:
-        if not self._distances:
-            self.find_distances()
-        return self._distances
-
-    def find_distances(self) -> None:
-        distances: Distances = {self: 0}
-        frontier: List[Cell] = [self]
-        while len(frontier) > 0:
-            new_frontier = []
-            for cell in frontier:
-                for linked_cell in cell.links:
-                    if not linked_cell in distances.keys():
-                        distances[linked_cell] = cast(int, distances[cell]) + 1
-                        new_frontier.append(linked_cell)
-                        self._longest_path = distances[linked_cell]
-                frontier = new_frontier
-        self._distances = distances
-
-    @property
-    def longest_path(self) -> Optional[int]:
-        return self._longest_path
-
     def __init__(self, row: int, column: int) -> None:
         if row is None or row < 0:
             raise ValueError("Row must be a positive integer")
@@ -60,14 +36,13 @@ class Cell:
 
         self._row: int = row
         self._column: int = column
-        self.content: Optional[int] = None
+
         self.north: Optional[Cell] = None
         self.south: Optional[Cell] = None
         self.east: Optional[Cell] = None
         self.west: Optional[Cell] = None
-        self._distances: Optional[Distances] = None
+
         self._links: Dict[Cell, bool] = {}
-        self._longest_path: Optional[int] = None
 
     def link(self, cell: "Cell", bidirectionally: bool = True):
         self._links[cell] = True

@@ -5,7 +5,7 @@ from shoze.algorithms.binary_tree import BinaryTree
 from shoze.algorithms.sidewinder import SideWinder
 
 from shoze.core.grid import Grid
-from shoze.core.types import Point
+from shoze.utils.types import Point
 
 
 class Maze(metaclass=ABCMeta):

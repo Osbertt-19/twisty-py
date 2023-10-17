@@ -1,10 +1,10 @@
 from random import randrange
 from typing import List, Optional, Tuple, cast
 from shoze.core.cell import Cell
-from shoze.core.types import Key
+from shoze.utils.types import Key
 
-from shoze.core.types import Point
-from shoze.exporters.colors import Color
+from shoze.utils.types import Point
+from shoze.utils.colors import Color
 
 
 MAX_DARK = 210  # Dark meaning farther than or more distant than
@@ -35,10 +35,6 @@ class Grid:
         self._rows: int = rows
         self._columns: int = columns
         self._grid: List[List[Cell]] = self.prepare_grid()
-        self.show_distances_flag: bool = False
-        self.solved_flag: bool = False
-        self.start: Optional[Cell] = None
-        self.end: Optional[Cell] = None
         self.configure_cells()
 
     def prepare_grid(self):
@@ -77,54 +73,6 @@ class Grid:
         column = randrange(0, self.columns)
         cell: Cell = self[row, column]
         return cell
-
-    def show_distances(self, start: Point) -> None:
-        if not self.show_distances_flag:
-            self.show_distances_flag = True
-            self.start = self[start]
-            for cell in self.each_cell():
-                cell.content = self.start.distances[cell]
-
-    def not_show_distances(self) -> None:
-        if self.show_distances_flag:
-            self.show_distances_flag = False
-            self.start = None
-            for cell in self.each_cell():
-                cell.content = None
-
-    def solve(self, start: Point, end: Point):
-        self.show_distances(start)
-        if not self.show_distances_flag:
-            self.show_distances()
-        self.start = self[start]
-        self.end = self[end]
-        current = self[end]
-        breadcrumbs: List[Cell] = [current]
-        while current != Cell(start[0], start[1]):
-            for neighbour in current.links:
-                neighbour = cast(Cell, neighbour)
-                if neighbour.content < current.content:
-                    breadcrumbs.append(neighbour)
-                    current = neighbour
-        for cell in self.each_cell():
-            if not cell in breadcrumbs:
-                cell.content = None
-                self.start.distances[cell] = None
-        self.solved_flag = True
-
-    def bg_for_cell(self, cell: Cell) -> Color:
-        mx = self.start.longest_path
-        distance = self.start.distances[cell]
-        if distance < mx and distance > 0:
-            intensity = (mx - distance) / mx
-            dark = round(MAX_DARK * intensity)
-            bright = round(MAX_BRIGHT + (MAX_BRIGHT_INTENSITY * intensity))
-            color: Color = (dark, bright, dark)
-        elif distance == mx:
-            color: Color = (128, 0, 0)
-        else:
-            color: Color = (0, 148, 255)
-        return color
 
     def __repr__(self):
         return f"Grid of {self.rows} rows and {self.columns} columns"

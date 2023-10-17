@@ -10,8 +10,3 @@ else:
 Point = Tuple[int, int]
 Distances = Dict[Cell, int]
 Key = Tuple[int, int]
-
-
-class Algorithms(Enum):
-    BINARY_TREE = 1
-    SIDEWINDER = 2
