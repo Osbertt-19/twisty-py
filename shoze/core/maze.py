@@ -84,6 +84,14 @@ class Maze:
 
         return farthest_cell
 
+    @property
+    def deadends(self) -> List[Cell]:
+        deadends = []
+        for cell in self.grid.each_cell():
+            if len(cell.links) == 1:
+                deadends.append(cell)
+        return deadends
+
     def bg_for_cell(self, cell: Cell) -> Color:
         MAX_DARK, MAX_BRIGHT, MAX_BRIGHT_INTENSITY = get_max_colors()
         mx = self._distances[self._farthest_cell]

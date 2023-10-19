@@ -75,6 +75,10 @@ class MazeTestCase(unittest.TestCase):
         for i in range(len(path)):
             assert heapq.heappop(path) == i
 
+    def test_deadends(self) -> None:
+        for cell in self.maze1.deadends:
+            assert len(cell.links) == 1
+
     @patch.object(AsciiExporter, "on")
     def test_export(self, mock_export: MagicMock) -> None:
         self.maze1.export()
