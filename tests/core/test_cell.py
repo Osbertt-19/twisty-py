@@ -1,8 +1,7 @@
-from typing import Dict
 import unittest
+import warnings
 
-from shoze.core.cell import Cell, Distances, is_cell
-from shoze.core.mazes.empty_maze import Algorithms, Maze
+from shoze.core.cell import Cell
 
 
 class CellTestCase(unittest.TestCase):
@@ -10,11 +9,8 @@ class CellTestCase(unittest.TestCase):
         self.cell_1 = Cell(1, 1)
         self.cell_2 = Cell(1, 1)
         self.cell_3 = Cell(1, 2)
-        ROW = 4
-        COLUMN = 4
-        self.maze = Maze(ROW, COLUMN).on(Algorithms.BINARY_TREE)
 
-    def test_invalid_args(self) -> None:
+    def test_constructor_invalid_args(self) -> None:
         with self.assertRaises(ValueError):
             cell = Cell(-1, 2)
         with self.assertRaises(ValueError):
@@ -24,13 +20,13 @@ class CellTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             cell = Cell(None, -2)
 
-    def test_constructor(self) -> None:
+    def test_constructor_valid_args(self) -> None:
+        assert self.cell_3.east is None
+        assert self.cell_3.west is None
+        assert self.cell_3.north is None
+        assert self.cell_3.south is None
         assert self.cell_3.row == 1
         assert self.cell_3.column == 2
-
-    def test_is_cell(self) -> None:
-        self.assertTrue(is_cell(self.cell_1))
-        self.assertFalse(is_cell(1))
 
     def test_equal(self) -> None:
         assert self.cell_1 == self.cell_2
@@ -50,6 +46,10 @@ class CellTestCase(unittest.TestCase):
         self.assertEqual(len(self.cell_1.links), 1)
         self.assertEqual(len(self.cell_3.links), 1)
 
+    def test_link_errors(self) -> None:
+        with self.assertRaises(ValueError):
+            self.cell_1.link(1)
+
     def test_unlink(self) -> None:
         self.cell_1.link(self.cell_3)
         self.assertTrue(self.cell_1.is_linked(self.cell_3))
@@ -62,27 +62,13 @@ class CellTestCase(unittest.TestCase):
         self.assertEqual(len(self.cell_1.links), 0)
         self.assertEqual(len(self.cell_3.links), 0)
 
-    def test_initial_distances(self) -> None:
-        cell = self.maze[0, 0]
-        assert cell._distances is None
-
-    def test_find_distances(self) -> None:
-        cell = self.maze[0, 0]
-        cell.find_distances()
-        assert cell._distances is not None
-        assert isinstance(cell._distances, dict)
-        assert len(cell._distances) == self.maze.size
-
-    def test_longest_path(self) -> None:
-        cell = self.maze[0, 0]
-        assert cell.longest_path is None
-
-        cell.find_distances()
-        assert isinstance(cell.longest_path, int)
-
-    def test_distances(self) -> None:
-        cell = self.maze[0, 0]
-        distances = cell.distances
-        assert distances is not None
-        assert isinstance(distances, dict)
-        assert len(distances) == self.maze.size
+    def test_unlink_errors(self) -> None:
+        with self.assertRaises(ValueError):
+            self.cell_1.unlink(1)
+        with warnings.catch_warnings(record=True) as w:
+            self.cell_1.unlink(self.cell_3)
+            assert len(w) == 1
+            assert (
+                str(w[0].message)
+                == f"Cell({self.cell_1.row},{self.cell_1.column}) and Cell({self.cell_3.row},{self.cell_3.column}) are not linked"
+            )

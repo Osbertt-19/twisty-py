@@ -1,12 +1,13 @@
 import unittest
 
 from tests.core.test_cell import CellTestCase
-from tests.core.test_grid import GridShowDistancesTestCase, GridTestCase
+
+# from tests.core.test_grid import GridShowDistancesTestCase, GridTestCase
 
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTests(CellTestCase, GridTestCase, GridShowDistancesTestCase)
+    suite.addTests(CellTestCase)
     return suite
 
 

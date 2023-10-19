@@ -1,7 +1,7 @@
 from random import choice, randint
 from typing import cast
 from shoze.algorithms.base import Algorithm
-from shoze.core.cell import Cell, is_cell
+from shoze.core.cell import Cell
 from shoze.core.grid import Grid
 
 
@@ -13,7 +13,7 @@ class SideWinder(Algorithm):
                 run.append(cell)
 
                 cell_has_no_east = cell.east is None
-                cell_has_north = is_cell(cell.north)
+                cell_has_north = isinstance(cell.north, Cell)
                 head_in_coin_toss = randint(0, 1) == 0
 
                 go_north = cell_has_no_east or (cell_has_north and head_in_coin_toss)
