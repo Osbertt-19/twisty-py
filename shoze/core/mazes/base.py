@@ -15,8 +15,10 @@ class Maze(metaclass=ABCMeta):
         algorithm: Algorithm,
     ) -> None:
         rows, columns = grid
+
         self.grid = Grid(rows, columns)
         self.algorithm = algorithm
+
         algorithm.on(self.grid)
 
     @property
