@@ -1,9 +1,10 @@
-from typing import List, Optional, cast
+from typing import List, Optional, Tuple, cast
 from shoze.algorithms.base import Algorithm
 from shoze.algorithms.binary_tree import BinaryTree
 from shoze.core.cell import Cell
 
 from shoze.core.grid import Grid
+from shoze.exporters.ascii import AsciiExporter
 from shoze.exporters.base import Exporter
 from shoze.utils.colors import Color, get_max_colors
 from shoze.utils.types import Distances, Point
@@ -30,6 +31,12 @@ class Maze:
         algorithm: Algorithm = BinaryTree(),
     ) -> None:
         rows, columns = grid
+        if rows < 0 or columns < 0:
+            raise ValueError("grid must contain positive integers")
+
+        if not isinstance(algorithm, Algorithm):
+            raise ValueError("algorithm must be of type Algorithm ")
+
         self.grid = Grid(rows, columns)
 
         algorithm.on(self.grid)
@@ -92,5 +99,5 @@ class Maze:
             color: Color = (0, 148, 255)
         return color
 
-    def export(self, exporter: Exporter) -> None:
+    def export(self, exporter: Exporter = AsciiExporter()) -> None:
         exporter.on(self)

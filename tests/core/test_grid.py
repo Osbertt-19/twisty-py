@@ -1,7 +1,6 @@
 from typing import cast
 import unittest
 from shoze.core.cell import Cell
-
 from shoze.core.grid import Grid
 
 ROW = 4
@@ -13,14 +12,21 @@ class GridTestCase(unittest.TestCase):
         self.grid = Grid(ROW, COLUMN)
 
     def test_constructor_invalid_args(self) -> None:
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValueError) as e:
             grid = Grid(-1, 2)
-        with self.assertRaises(ValueError):
+            assert str(e.exception) == "rows must be a positive integer"
+
+        with self.assertRaises(ValueError) as e:
+            grid = Grid(None, 2)
+            assert str(e.exception) == "rows must be a positive integer"
+
+        with self.assertRaises(ValueError) as e:
             grid = Grid(1, -2)
-        with self.assertRaises(ValueError):
-            grid = Grid(-1, None)
-        with self.assertRaises(ValueError):
-            grid = Grid(None, -2)
+            assert str(e.exception) == "columns must be a positive integer"
+
+        with self.assertRaises(ValueError) as e:
+            grid = Grid(1, None)
+            assert str(e.exception) == "columns must be a positive integer"
 
     def test_constructor_valid_args(self) -> None:
         assert self.grid.rows == ROW

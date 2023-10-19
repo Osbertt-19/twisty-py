@@ -11,14 +11,21 @@ class CellTestCase(unittest.TestCase):
         self.cell_3 = Cell(1, 2)
 
     def test_constructor_invalid_args(self) -> None:
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValueError) as e:
             cell = Cell(-1, 2)
-        with self.assertRaises(ValueError):
+            assert str(e.exception) == "row must be a positive integer"
+
+        with self.assertRaises(ValueError) as e:
+            cell = Cell(None, 2)
+            assert str(e.exception) == "row must be a positive integer"
+
+        with self.assertRaises(ValueError) as e:
             cell = Cell(1, -2)
-        with self.assertRaises(ValueError):
-            cell = Cell(-1, None)
-        with self.assertRaises(ValueError):
-            cell = Cell(None, -2)
+            assert str(e.exception) == "column must be a positive integer"
+
+        with self.assertRaises(ValueError) as e:
+            cell = Cell(1, None)
+            assert str(e.exception) == "column must be a positive integer"
 
     def test_constructor_valid_args(self) -> None:
         assert self.cell_3.east is None
@@ -47,8 +54,9 @@ class CellTestCase(unittest.TestCase):
         self.assertEqual(len(self.cell_3.links), 1)
 
     def test_link_errors(self) -> None:
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValueError) as e:
             self.cell_1.link(1)
+            assert str(e.exception) == "Link can only be made between two cells"
 
     def test_unlink(self) -> None:
         self.cell_1.link(self.cell_3)
@@ -63,8 +71,10 @@ class CellTestCase(unittest.TestCase):
         self.assertEqual(len(self.cell_3.links), 0)
 
     def test_unlink_errors(self) -> None:
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValueError) as e:
             self.cell_1.unlink(1)
+            assert str(e.exception) == "Unlink can only be made between two cells"
+
         with warnings.catch_warnings(record=True) as w:
             self.cell_1.unlink(self.cell_3)
             assert len(w) == 1

@@ -1,6 +1,5 @@
-from typing import Dict, List, Optional, cast
+from typing import Dict, List, Optional
 import warnings
-from shoze.utils.types import Distances
 
 
 class Cell:
@@ -31,9 +30,9 @@ class Cell:
 
     def __init__(self, row: int, column: int) -> None:
         if row is None or row < 0:
-            raise ValueError("Row must be a positive integer")
+            raise ValueError("row must be a positive integer")
         if column is None or column < 0:
-            raise ValueError("Column must be a positive integer")
+            raise ValueError("column must be a positive integer")
 
         self._row: int = row
         self._column: int = column
