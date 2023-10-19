@@ -1,15 +1,49 @@
-from shoze.core.mazes.base import Maze
-from shoze.core.mazes.empty_maze import EmptyMaze
-from shoze.core.mazes.start_maze import StartMaze
-from shoze.exporters.ascii.empty_maze import EmptyAsciiExporter
-from shoze.exporters.ascii.start_end_maze import StartEndAsciiExporter
-from shoze.exporters.ascii.start_maze import StartAsciiExporter
+from shoze.core.maze import Maze
+from shoze.exporters.base import Exporter
 
 
-def export_ascii(maze: Maze):
-    if isinstance(maze, EmptyMaze):
-        EmptyAsciiExporter.on(maze)
-    elif isinstance(maze, StartMaze):
-        StartAsciiExporter.on(maze)
-    else:
-        StartEndAsciiExporter.on(maze)
+class AsciiExporter(Exporter):
+    def __init__(
+        self, show_distances: bool = False, show_path: bool = False, cell_width: int = 3
+    ) -> None:
+        super().__init__(show_distances, show_path)
+        self.cell_width = cell_width
+
+    def on(self, maze: Maze) -> None:
+        return super().on(maze)
+
+    def on(self, maze: Maze) -> None:
+        super().on(maze)
+        cell_width = (
+            len(str(maze.grid.size))
+            if self.show_distances or self.show_path
+            else self.cell_width
+        )
+
+        output = "+" + ("-" * cell_width + "+") * maze.grid.columns + "\n"
+        for row in maze.grid.each_row():
+            top = "|"
+            bottom = "+"
+            for cell in row:
+                if self.show_distances:
+                    body = " " * (cell_width - len(str(maze.distances[cell]))) + str(
+                        maze.distances[cell]
+                    )
+                elif self.show_path and cell in maze.path:
+                    body = " " * (cell_width - len(str(maze.path[cell]))) + str(
+                        maze.path[cell]
+                    )
+                else:
+                    body = " " * cell_width
+
+                east_boundary = " " if cell.is_linked(cell.east) else "|"
+                top += body + east_boundary
+                south_boundary = (
+                    " " * cell_width if cell.is_linked(cell.south) else "-" * cell_width
+                )
+                corner = "+"
+                bottom += south_boundary + corner
+            output += top + "\n"
+            output += bottom + "\n"
+
+        print(output)
