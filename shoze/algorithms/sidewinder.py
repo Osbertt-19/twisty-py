@@ -6,7 +6,7 @@ from shoze.core.grid import Grid
 
 
 class SideWinder(Algorithm):
-    def on(grid: Grid):
+    def on(self, grid: Grid):
         for row in grid.each_row():
             run = []
             for cell in row:

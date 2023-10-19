@@ -4,8 +4,7 @@ from shoze.core.grid import Grid
 
 
 class BinaryTree(Algorithm):
-    @staticmethod
-    def on(grid: Grid) -> None:
+    def on(self, grid: Grid) -> None:
         for cell in grid.each_cell():
             neighbours = []
             if cell.north:

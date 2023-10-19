@@ -5,7 +5,7 @@ from shoze.core.grid import Grid
 
 class Algorithm(metaclass=ABCMeta):
     @abstractmethod
-    def on(grid: Grid) -> "Algorithm":
+    def on(self, grid: Grid) -> None:
         raise NotImplementedError
 
     @property

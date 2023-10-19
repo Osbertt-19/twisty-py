@@ -17,11 +17,7 @@ class Maze(metaclass=ABCMeta):
         rows, columns = grid
         self.grid = Grid(rows, columns)
         self.algorithm = algorithm
-
-        if isinstance(self.algorithm, BinaryTree):
-            BinaryTree.on(self.grid)
-        elif isinstance(self.algorithm, SideWinder):
-            SideWinder.on(self.grid)
+        algorithm.on(self.grid)
 
     @property
     def name(self) -> None:

@@ -1,11 +1,10 @@
-from typing import List, Optional, cast
+from typing import List, cast
 from shoze.algorithms.base import Algorithm
 from shoze.algorithms.binary_tree import BinaryTree
 from shoze.core.cell import Cell
-from shoze.core.grid import MAX_BRIGHT, MAX_BRIGHT_INTENSITY, MAX_DARK, Grid
 from shoze.core.mazes.base import Maze
 from shoze.utils.types import Distances, Point
-from shoze.utils.colors import Color
+from shoze.utils.colors import Color, get_max_colors
 
 
 class StartMaze(Maze):
@@ -41,6 +40,7 @@ class StartMaze(Maze):
         return farthest_cell
 
     def bg_for_cell(self, cell: Cell) -> Color:
+        MAX_DARK, MAX_BRIGHT, MAX_BRIGHT_INTENSITY = get_max_colors()
         mx = self.distances[self.farthest_cell]
         distance = self.distances[cell]
         if distance < mx and distance > 0:

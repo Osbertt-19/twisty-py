@@ -1,17 +1,7 @@
 from random import randrange
-from typing import List, Optional, Tuple, cast
+from typing import List, Optional, cast
 from shoze.core.cell import Cell
 from shoze.utils.types import Key
-
-from shoze.utils.types import Point
-from shoze.utils.colors import Color
-
-
-MAX_DARK = 210  # Dark meaning farther than or more distant than
-MAX_BRIGHT = round(
-    MAX_DARK / 2
-)  # And thus, bright means closer than or less distant than
-MAX_BRIGHT_INTENSITY = MAX_BRIGHT - 1
 
 
 class Grid:
