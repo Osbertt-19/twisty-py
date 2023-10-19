@@ -6,3 +6,4 @@ png/
 *.pyc 
 *.pyo
 goal.py
+main.py

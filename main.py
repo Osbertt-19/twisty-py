@@ -5,5 +5,5 @@ from shoze.core.mazes.start_maze import StartMaze
 from shoze.exporters.png_exporter import export_png
 
 
-maze = EmptyMaze((10, 10))
+maze = StartMaze((20, 20))
 export_png(maze)
