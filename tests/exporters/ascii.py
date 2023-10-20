@@ -10,7 +10,7 @@ COLUMNS = 4
 
 
 class AsciiTestCase(unittest.TestCase):
-    def test_printed_output(self):
+    def test_ascii(self):
         with patch("sys.stdout", new_callable=io.StringIO) as mock_stdout:
             maze = Maze((ROWS, COLUMNS))
             AsciiExporter().on(maze)

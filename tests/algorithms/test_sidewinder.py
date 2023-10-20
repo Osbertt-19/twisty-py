@@ -11,4 +11,4 @@ class SideWinderTestCase(unittest.TestCase):
     def test_alogrithm(self) -> None:
         SideWinder().on(self.grid)
         for cell in self.grid.each_cell():
-            assert len(cell.neighbours) > 0
+            assert len(cell.links) > 0

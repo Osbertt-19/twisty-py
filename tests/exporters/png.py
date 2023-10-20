@@ -8,7 +8,7 @@ COLUMNS = 4
 
 
 class PngTestCase(unittest.TestCase):
-    def test_printed_output(self):
+    def test_png(self):
         maze = Maze((ROWS, COLUMNS))
         PngExporter(filename="test").on(maze)
         self.assertTrue(os.path.isfile("png/test.png"))
