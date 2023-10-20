@@ -14,5 +14,5 @@ class AsciiTestCase(unittest.TestCase):
         with patch("sys.stdout", new_callable=io.StringIO) as mock_stdout:
             maze = Maze((ROWS, COLUMNS))
             AsciiExporter().on(maze)
-            output = mock_stdout.getvalue()
+            output: str = mock_stdout.getvalue()
             assert len(output.split("\n")) == ROWS + ROWS + 3

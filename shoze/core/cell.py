@@ -1,3 +1,4 @@
+from random import choice
 from typing import Dict, List, Optional
 import warnings
 
@@ -62,6 +63,9 @@ class Cell:
             del self._links[cell]
             if bidirectionally:
                 cell.unlink(self, False)
+
+    def random_neighbour(self) -> "Cell":
+        return choice(self.neighbours)
 
     def is_linked(self, cell: "Cell") -> bool:
         return cell in self._links

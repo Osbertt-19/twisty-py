@@ -1,4 +1,4 @@
-from typing import List, Optional, Tuple, cast
+from typing import List, Optional, cast
 from shoze.algorithms.base import Algorithm
 from shoze.algorithms.binary_tree import BinaryTree
 from shoze.core.cell import Cell
@@ -84,14 +84,6 @@ class Maze:
 
         return farthest_cell
 
-    @property
-    def deadends(self) -> List[Cell]:
-        deadends = []
-        for cell in self.grid.each_cell():
-            if len(cell.links) == 1:
-                deadends.append(cell)
-        return deadends
-
     def bg_for_cell(self, cell: Cell) -> Color:
         MAX_DARK, MAX_BRIGHT, MAX_BRIGHT_INTENSITY = get_max_colors()
         mx = self._distances[self._farthest_cell]
@@ -107,5 +99,14 @@ class Maze:
             color: Color = (0, 148, 255)
         return color
 
-    def export(self, exporter: Exporter = AsciiExporter()) -> None:
+    @property
+    def deadends(self) -> List[Cell]:
+        deadends = []
+        for cell in self.grid.each_cell():
+            if len(cell.links) == 1:
+                deadends.append(cell)
+        return deadends
+
+    def export(self, exporter: Exporter = AsciiExporter()) -> "Maze":
         exporter.on(self)
+        return self

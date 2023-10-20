@@ -1,5 +1,7 @@
 from typing import Tuple
 
+from shoze.core.cell import Cell
+
 Color = Tuple[int, int, int]
 
 
