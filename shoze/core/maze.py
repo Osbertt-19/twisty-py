@@ -23,19 +23,15 @@ class Maze:
 
     def __init__(
         self,
-        grid: Point,
+        grid: Grid,
         start: Optional[Point] = None,
         end: Optional[Point] = None,
         algorithm: Algorithm = DEFAULT_ALGORITHM(),
     ) -> None:
-        rows, columns = grid
-        if rows < 0 or columns < 0:
-            raise ValueError("grid must contain positive integers")
-
         if not isinstance(algorithm, Algorithm):
             raise ValueError("algorithm must be of type Algorithm ")
 
-        self.grid = Grid(rows, columns)
+        self.grid = grid
 
         algorithm.on(self.grid)
         self.algorithm = algorithm
