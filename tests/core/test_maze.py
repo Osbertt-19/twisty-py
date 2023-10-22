@@ -17,15 +17,11 @@ END = (ROWS - 1, 0)
 
 class MazeTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.maze1 = Maze((ROWS, COLUMNS))
-        self.maze2 = Maze((ROWS, COLUMNS), START)
-        self.maze3 = Maze((ROWS, COLUMNS), START, END)
+        self.maze1 = Maze(Grid(ROWS, COLUMNS))
+        self.maze2 = Maze(Grid(ROWS, COLUMNS), START)
+        self.maze3 = Maze(Grid(ROWS, COLUMNS), START, END)
 
     def test_constructor_invalid_args(self) -> None:
-        with self.assertRaises(ValueError) as e:
-            maze = Maze((-1, 0))
-            assert str(e.exception) == "grid must contain positive integers"
-
         with self.assertRaises(ValueError) as e:
             maze = Maze((ROWS, COLUMNS), algorithm=1)
             assert str(e.exception) == "algorithm must be of type Algorithm "

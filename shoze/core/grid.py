@@ -55,6 +55,9 @@ class Grid:
             return None
         return cast(Cell, self._grid[row][column])
 
+    def set_cell_at(self, row: int, column: int, value: Cell) -> None:
+        self._grid[row][column] = value
+
     def __getitem__(self, key: Key):
         return self.cell_at(key)
 
@@ -65,4 +68,4 @@ class Grid:
         return cell
 
     def __repr__(self):
-        return f"Grid of {self.rows} rows and {self.columns} columns"
+        return str(self._grid)

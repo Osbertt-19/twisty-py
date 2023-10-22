@@ -1,3 +1,4 @@
+from random import randint
 from typing import List
 from shoze.utils.types import Key
 
@@ -40,6 +41,14 @@ class Mask:
                 if j:
                     count += 1
         return count
+
+    def random_location(self) -> Key:
+        while True:
+            row = randint(0, self.rows - 1)
+            column = randint(0, self.columns - 1)
+            if self[row, column]:
+                location: Key = (row, column)
+                return location
 
     def __repr__(self) -> str:
         return str(self.bits)
