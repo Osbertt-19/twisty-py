@@ -7,6 +7,7 @@ from shoze.core.grid import Grid
 
 from shoze.core.maze import Maze
 from shoze.exporters.ascii import AsciiExporter
+from shoze.utils.config import DEFAULT_ALGORITHM, DEFAULT_EXPORTER
 
 ROWS = 4
 COLUMNS = 4
@@ -56,7 +57,7 @@ class MazeTestCase(unittest.TestCase):
         assert self.maze3.path is not None
         assert self.maze3.farthest_cell is not None
 
-    @patch.object(BinaryTree, "on")
+    @patch.object(DEFAULT_ALGORITHM, "on")
     def test_algorithm(self, mock_algo: MagicMock) -> None:
         maze = Maze((ROWS, COLUMNS))
         mock_algo.assert_called_once_with(maze.grid)
@@ -79,7 +80,7 @@ class MazeTestCase(unittest.TestCase):
         for cell in self.maze1.deadends:
             assert len(cell.links) == 1
 
-    @patch.object(AsciiExporter, "on")
+    @patch.object(DEFAULT_EXPORTER, "on")
     def test_export(self, mock_export: MagicMock) -> None:
         self.maze1.export()
         mock_export.assert_called_once_with(self.maze1)

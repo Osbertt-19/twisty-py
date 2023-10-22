@@ -3,6 +3,7 @@ from tests.algorithms.test_binary_tree import BinaryTreeTestCase
 from tests.algorithms.test_sidewinder import SideWinderTestCase
 from tests.core.test_cell import CellTestCase
 from tests.core.test_grid import GridTestCase
+from tests.core.test_mask import MaskTestCase
 from tests.core.test_maze import MazeTestCase
 from tests.exporters.ascii import AsciiTestCase
 from tests.exporters.png import PngTestCase
@@ -10,7 +11,7 @@ from tests.exporters.png import PngTestCase
 
 def core_suite() -> unittest.TestSuite:
     suite = unittest.TestSuite()
-    suite.addTests(CellTestCase, GridTestCase, MazeTestCase)
+    suite.addTests(CellTestCase, GridTestCase, MazeTestCase, MaskTestCase)
     return suite
 
 

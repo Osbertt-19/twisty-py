@@ -4,6 +4,11 @@ from shoze.utils.types import Key
 
 class Mask:
     def __init__(self, rows: int, columns: int) -> None:
+        if rows is None or rows < 0:
+            raise ValueError("rows must be a positive integer")
+        if columns is None or columns < 0:
+            raise ValueError("columns must be a positive integer")
+
         self.rows: int = rows
         self.columns: int = columns
         self.bits: List[List[bool]] = [
