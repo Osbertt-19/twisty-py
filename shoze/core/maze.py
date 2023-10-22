@@ -1,12 +1,10 @@
 from typing import List, Optional, cast
 from shoze.algorithms.base import Algorithm
-from shoze.algorithms.binary_tree import BinaryTree
 from shoze.core.cell import Cell
-
 from shoze.core.grid import Grid
-from shoze.exporters.ascii import AsciiExporter
 from shoze.exporters.base import Exporter
 from shoze.utils.colors import Color, get_max_colors
+from shoze.utils.config import DEFAULT_ALGORITHM, DEFAULT_EXPORTER
 from shoze.utils.types import Distances, Point
 
 
@@ -28,7 +26,7 @@ class Maze:
         grid: Point,
         start: Optional[Point] = None,
         end: Optional[Point] = None,
-        algorithm: Algorithm = BinaryTree(),
+        algorithm: Algorithm = DEFAULT_ALGORITHM(),
     ) -> None:
         rows, columns = grid
         if rows < 0 or columns < 0:
@@ -107,6 +105,6 @@ class Maze:
                 deadends.append(cell)
         return deadends
 
-    def export(self, exporter: Exporter = AsciiExporter()) -> "Maze":
+    def export(self, exporter: Exporter = DEFAULT_EXPORTER()) -> "Maze":
         exporter.on(self)
         return self
