@@ -5,6 +5,8 @@ from shoze.core.mask import Mask
 
 class MaskedGrid(Grid):
     def __init__(self, rows: int, columns: int, mask: Mask) -> None:
+        if rows != mask.rows or columns != mask.columns:
+            raise ValueError("mask must have the same rows and columns as the grid")
         self.mask = mask
         super().__init__(rows, columns)
 
