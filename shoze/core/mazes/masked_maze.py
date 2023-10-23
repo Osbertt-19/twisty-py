@@ -6,7 +6,11 @@ from shoze.core.grids.masked_grid import MaskedGrid
 from shoze.core.mazes.maze import Maze
 from shoze.exporters.ascii.masked_maze import MaskedAsciiExporter
 from shoze.exporters.base import Exporter
-from shoze.utils.config import DEFAULT_ALGORITHM, DEFAULT_EXPORTER
+from shoze.utils.config import (
+    DEFAULT_ALGORITHM,
+    DEFAULT_EXPORTER,
+    DEFAULT_MASKED_EXPORTER,
+)
 from shoze.utils.types import Distances, Point
 
 
@@ -42,5 +46,5 @@ class MaskedMaze(Maze):
 
         self._path: Distances = self._find_path() if self.start and self.end else None
 
-    def export(self, exporter: Exporter = MaskedAsciiExporter()) -> Maze:
+    def export(self, exporter: Exporter = DEFAULT_MASKED_EXPORTER()) -> Maze:
         return super().export(exporter)
