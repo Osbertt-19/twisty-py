@@ -1,2 +1,2 @@
 to add more colors
-integration test cases
+improve integration test cases
