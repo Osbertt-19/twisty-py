@@ -1,7 +1,7 @@
 from typing import List, Optional, cast
 from shoze.algorithms.base import Algorithm
 from shoze.core.cell import Cell
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 from shoze.exporters.base import Exporter
 from shoze.utils.colors import Color, get_max_colors
 from shoze.utils.config import DEFAULT_ALGORITHM, DEFAULT_EXPORTER

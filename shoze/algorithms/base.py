@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
 
 class Algorithm(metaclass=ABCMeta):

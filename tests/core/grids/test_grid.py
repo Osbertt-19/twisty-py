@@ -1,7 +1,7 @@
 from typing import cast
 import unittest
 from shoze.core.cell import Cell
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
 ROW = 4
 COLUMN = 5

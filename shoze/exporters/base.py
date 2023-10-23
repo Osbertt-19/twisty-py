@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from shoze.core.maze import Maze
+    from shoze.core.mazes.maze import Maze
 else:
     Maze = "Maze"
 

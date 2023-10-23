@@ -3,10 +3,9 @@ import unittest
 from unittest.mock import MagicMock, patch
 from shoze.algorithms.base import Algorithm
 from shoze.algorithms.binary_tree import BinaryTree
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
-from shoze.core.maze import Maze
-from shoze.exporters.ascii import AsciiExporter
+from shoze.core.mazes.maze import Maze
 from shoze.utils.config import DEFAULT_ALGORITHM, DEFAULT_EXPORTER
 
 ROWS = 4

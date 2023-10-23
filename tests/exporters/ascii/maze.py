@@ -1,10 +1,10 @@
 import io
 import unittest
 from unittest.mock import patch
-from shoze.core.grid import Grid
-from shoze.core.maze import Maze
+from shoze.core.grids.grid import Grid
+from shoze.core.mazes.maze import Maze
+from shoze.exporters.ascii.maze import AsciiExporter
 
-from shoze.exporters.ascii import AsciiExporter
 
 ROWS = 4
 COLUMNS = 4

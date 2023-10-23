@@ -1,17 +1,20 @@
 import unittest
 from tests.algorithms.test_binary_tree import BinaryTreeTestCase
 from tests.algorithms.test_sidewinder import SideWinderTestCase
+from tests.core.grids.test_masked_grid import MaskedGridTestCase
 from tests.core.test_cell import CellTestCase
-from tests.core.test_grid import GridTestCase
+from tests.core.grids.test_grid import GridTestCase
 from tests.core.test_mask import MaskTestCase
-from tests.core.test_maze import MazeTestCase
-from tests.exporters.ascii import AsciiTestCase
-from tests.exporters.png import PngTestCase
+from tests.core.mazes.test_maze import MazeTestCase
+from tests.exporters.ascii.maze import AsciiTestCase
+from tests.exporters.png.maze import PngTestCase
 
 
 def core_suite() -> unittest.TestSuite:
     suite = unittest.TestSuite()
-    suite.addTests(CellTestCase, GridTestCase, MazeTestCase, MaskTestCase)
+    suite.addTests(
+        CellTestCase, GridTestCase, MazeTestCase, MaskTestCase, MaskedGridTestCase
+    )
     return suite
 
 

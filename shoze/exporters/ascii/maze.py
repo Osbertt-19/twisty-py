@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING
 
 
 if TYPE_CHECKING:
-    from shoze.core.maze import Maze
+    from shoze.core.mazes.maze import Maze
 else:
     Maze = "Maze"
 from shoze.exporters.base import Exporter

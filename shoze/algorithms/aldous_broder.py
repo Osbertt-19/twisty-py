@@ -1,5 +1,5 @@
 from shoze.algorithms.base import Algorithm
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
 
 class AldousBroder(Algorithm):

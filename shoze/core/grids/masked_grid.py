@@ -1,5 +1,5 @@
 from shoze.core.cell import Cell
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 from shoze.core.mask import Mask
 
 

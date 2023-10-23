@@ -1,8 +1,8 @@
 from shoze.core.grids.masked_grid import MaskedGrid
 from shoze.core.mask import Mask
-from shoze.core.maze import Maze
-from shoze.exporters.ascii import AsciiExporter
-from shoze.exporters.png import PngExporter
+from shoze.core.mazes.maze import Maze
+from shoze.exporters.ascii_exporters.maze import AsciiExporter
+from shoze.exporters.png.maze import PngExporter
 
 mask = Mask(10, 10)
 mask[1, 1] = False

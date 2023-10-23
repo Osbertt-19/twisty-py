@@ -1,10 +1,10 @@
 from typing import Optional
 from shoze.algorithms.base import Algorithm
 from shoze.core.cell import Cell
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 from shoze.core.grids.masked_grid import MaskedGrid
-from shoze.core.maze import Maze
-from shoze.exporters.ascii_exporters.masked import MaskedAsciiExporter
+from shoze.core.mazes.maze import Maze
+from shoze.exporters.ascii.masked_maze import MaskedAsciiExporter
 from shoze.exporters.base import Exporter
 from shoze.utils.config import DEFAULT_ALGORITHM, DEFAULT_EXPORTER
 from shoze.utils.types import Distances, Point

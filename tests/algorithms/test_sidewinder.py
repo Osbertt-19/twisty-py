@@ -1,7 +1,7 @@
 import unittest
 from shoze.algorithms.sidewinder import SideWinder
 
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
 
 class SideWinderTestCase(unittest.TestCase):

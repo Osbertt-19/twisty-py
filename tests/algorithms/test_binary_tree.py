@@ -1,7 +1,7 @@
 import unittest
 from shoze.algorithms.binary_tree import BinaryTree
 
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
 
 class BinaryTreeTestCase(unittest.TestCase):

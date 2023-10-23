@@ -1,6 +1,6 @@
 from random import choice
 from shoze.algorithms.base import Algorithm
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
 
 class BinaryTree(Algorithm):

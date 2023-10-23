@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, List
 from shoze.core.cell import Cell
-from shoze.exporters.ascii import AsciiExporter
+from shoze.exporters.ascii.maze import AsciiExporter
 
 
 if TYPE_CHECKING:

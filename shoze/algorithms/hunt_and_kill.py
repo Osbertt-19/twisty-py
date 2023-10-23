@@ -2,7 +2,7 @@ from random import choice
 from typing import Optional, cast
 from shoze.algorithms.base import Algorithm
 from shoze.core.cell import Cell
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
 
 class HuntAndKill(Algorithm):

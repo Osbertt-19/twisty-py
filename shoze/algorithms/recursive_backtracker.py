@@ -2,7 +2,7 @@ from random import choice
 from typing import List, Optional
 from shoze.algorithms.base import Algorithm
 from shoze.core.cell import Cell
-from shoze.core.grid import Grid
+from shoze.core.grids.grid import Grid
 
 
 class RecursiveBacktracker(Algorithm):
