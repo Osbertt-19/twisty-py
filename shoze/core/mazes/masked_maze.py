@@ -24,6 +24,11 @@ class MaskedMaze(Maze):
         if not isinstance(algorithm, Algorithm):
             raise ValueError("algorithm must be of type Algorithm ")
 
+        if start and not grid.mask[start]:
+            raise ValueError("start point cannot point to a masked cell")
+
+        if end and not grid.mask[end]:
+            raise ValueError("end point cannot point to a masked cell")
         self.grid = grid
 
         algorithm.on(self.grid)

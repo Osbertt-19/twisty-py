@@ -22,6 +22,3 @@ class MaskedGrid(Grid):
     def random_cell(self):
         row, column = self.mask.random_location()
         return self[row, column]
-
-    def size(self):
-        return self.mask.count()

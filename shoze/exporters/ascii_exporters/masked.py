@@ -17,6 +17,20 @@ class MaskedAsciiExporter(AsciiExporter):
                 return True
         return False
 
+    def body(self, cell) -> str:
+        cell_width = self.cell_width
+        if self.show_distances:
+            body = " " * (cell_width - len(str(self.maze.distances[cell]))) + str(
+                self.maze.distances[cell]
+            )
+        elif self.show_path and cell in self.maze.path:
+            body = " " * (cell_width - len(str(self.maze.path[cell]))) + str(
+                self.maze.path[cell]
+            )
+        else:
+            body = " " * cell_width
+        return body
+
     def on(self, maze: MaskedMaze) -> None:
         Exporter.on(self, maze)
         self.maze = maze
@@ -25,7 +39,7 @@ class MaskedAsciiExporter(AsciiExporter):
             if self.show_distances or self.show_path
             else self.cell_width
         )
-
+        self.cell_width = cell_width
         H = "-" * cell_width
         V = "|"
         I = "+"
@@ -46,7 +60,9 @@ class MaskedAsciiExporter(AsciiExporter):
         # Bodies
         for j in range(maze.grid.rows):
             output += V if self.exists([maze.grid[j, 0]]) else S
-            output += SS if self.exists([maze.grid[j, 0]]) else SS
+            output += (
+                self.body(maze.grid[j, 0]) if self.exists([maze.grid[j, 0]]) else SS
+            )
             for i in range(1, maze.grid.columns):
                 if self.exists([maze.grid[j, i], maze.grid[j, i - 1]]):
                     if not maze.grid[j, i].is_linked(maze.grid[j, i - 1]):
@@ -56,7 +72,9 @@ class MaskedAsciiExporter(AsciiExporter):
                 else:
                     output += S
 
-                output += SS if self.exists([maze.grid[j, i]]) else SS
+                output += (
+                    self.body(maze.grid[j, i]) if self.exists([maze.grid[j, i]]) else SS
+                )
             output += V if self.exists([maze.grid[j, i]]) else S
 
             output += "\n"
