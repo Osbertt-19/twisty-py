@@ -9,6 +9,7 @@ from tests.core.test_mask import MaskTestCase
 from tests.core.mazes.test_maze import MazeTestCase
 from tests.exporters.ascii.masked_maze import MaskedAsciiTestCase
 from tests.exporters.ascii.maze import AsciiTestCase
+from tests.exporters.png.masked_maze import MaskedPngTestCase
 from tests.exporters.png.maze import PngTestCase
 from tests.goals import GoalsTestCase
 
@@ -34,7 +35,7 @@ def algorithms_suite() -> unittest.TestSuite:
 
 def exporter_suite() -> unittest.TestSuite:
     suite = unittest.TestSuite()
-    suite.addTests(AsciiTestCase, PngTestCase, MaskedAsciiTestCase)
+    suite.addTests(AsciiTestCase, PngTestCase, MaskedAsciiTestCase, MaskedPngTestCase)
     return suite
 
 

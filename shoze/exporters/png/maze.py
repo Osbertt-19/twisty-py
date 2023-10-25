@@ -4,6 +4,8 @@ from shoze.exporters.base import Exporter
 from shoze.utils.colors import BLACK, WHITE, Color
 from PIL import Image, ImageDraw
 
+from shoze.utils.config import PNG_OFFSET
+
 
 class PngExporter(Exporter):
     def __init__(
@@ -34,17 +36,17 @@ class PngExporter(Exporter):
         image.save(f"images/{self.filename}.png", "PNG", optimize=True)
 
     def _render_image(self, maze: Maze):
-        image_width = (self.cell_size * maze.grid.columns) + 1
-        image_height = (self.cell_size * maze.grid.rows) + 1
+        image_width = (self.cell_size * maze.grid.columns) + (PNG_OFFSET * 2)
+        image_height = (self.cell_size * maze.grid.rows) + (PNG_OFFSET * 2)
 
         image = Image.new("RGBA", (image_width, image_height), self.background_color)
         draw = ImageDraw.Draw(image)
         for i in range(2):
             for cell in maze.grid.each_cell():
-                x1 = cell.column * self.cell_size
-                y1 = cell.row * self.cell_size
-                x2 = (cell.column + 1) * self.cell_size
-                y2 = (cell.row + 1) * self.cell_size
+                x1 = cell.column * self.cell_size + PNG_OFFSET
+                y1 = cell.row * self.cell_size + PNG_OFFSET
+                x2 = (cell.column + 1) * self.cell_size + PNG_OFFSET
+                y2 = (cell.row + 1) * self.cell_size + PNG_OFFSET
 
                 if i == 0:
                     if self.show_distances:

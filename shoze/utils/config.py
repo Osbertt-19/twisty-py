@@ -6,3 +6,5 @@ from shoze.exporters.ascii.maze import AsciiExporter
 DEFAULT_ALGORITHM = HuntAndKill
 DEFAULT_EXPORTER = AsciiExporter
 DEFAULT_MASKED_EXPORTER = MaskedAsciiExporter
+
+PNG_OFFSET = 8

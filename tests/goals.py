@@ -10,6 +10,7 @@ from shoze.core.mazes.masked_maze import MaskedMaze
 from shoze.core.mazes.maze import Maze
 from shoze.exporters.ascii.masked_maze import MaskedAsciiExporter
 from shoze.exporters.ascii.maze import AsciiExporter
+from shoze.exporters.png.masked_maze import MaskedPngExporter
 from shoze.exporters.png.maze import PngExporter
 
 ROWS = 4
@@ -87,3 +88,28 @@ class GoalsTestCase(unittest.TestCase):
             )
             output: str = mock_stdout.getvalue()
             assert len(output.split("\n")) == ROWS + ROWS + 3
+
+    def test_10(self) -> None:
+        mask = Mask(ROWS, COLUMNS)
+        mask[0, 0] = False
+        mask[0, 1] = False
+        MaskedMaze(MaskedGrid(mask)).export(MaskedPngExporter(filename="test"))
+        self.assertTrue(os.path.isfile("images/test.png"))
+
+    def test_11(self) -> None:
+        mask = Mask(ROWS, COLUMNS)
+        mask[0, 0] = False
+        mask[0, 1] = False
+        MaskedMaze(MaskedGrid(mask), (0, 2)).export(
+            MaskedPngExporter(filename="test", show_distances=True)
+        )
+        self.assertTrue(os.path.isfile("images/test.png"))
+
+    def test_12(self) -> None:
+        mask = Mask(ROWS, COLUMNS)
+        mask[0, 0] = False
+        mask[0, 1] = False
+        MaskedMaze(MaskedGrid(mask), (0, 2), (ROWS - 1, 0)).export(
+            MaskedPngExporter(filename="test", show_path=True)
+        )
+        self.assertTrue(os.path.isfile("images/test.png"))
