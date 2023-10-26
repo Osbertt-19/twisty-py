@@ -1,7 +1,7 @@
 import unittest
 import warnings
 
-from shoze.core.cell import Cell
+from twisty.core.cell import Cell
 
 
 class CellTestCase(unittest.TestCase):

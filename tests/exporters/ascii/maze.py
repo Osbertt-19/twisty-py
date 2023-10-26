@@ -1,9 +1,9 @@
 import io
 import unittest
 from unittest.mock import patch
-from shoze.core.grids.grid import Grid
-from shoze.core.mazes.maze import Maze
-from shoze.exporters.ascii.maze import AsciiExporter
+from twisty.core.grids.grid import Grid
+from twisty.core.mazes.maze import Maze
+from twisty.exporters.ascii.maze import AsciiExporter
 
 
 ROWS = 4

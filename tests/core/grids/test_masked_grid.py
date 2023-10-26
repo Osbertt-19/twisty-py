@@ -1,7 +1,7 @@
 import unittest
 
-from shoze.core.grids.masked_grid import MaskedGrid
-from shoze.core.masks.mask import Mask
+from twisty.core.grids.masked_grid import MaskedGrid
+from twisty.core.masks.mask import Mask
 
 ROWS = 4
 COLUMNS = 4

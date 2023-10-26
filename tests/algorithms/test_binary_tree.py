@@ -1,7 +1,7 @@
 import unittest
-from shoze.algorithms.binary_tree import BinaryTree
+from twisty.algorithms.binary_tree import BinaryTree
 
-from shoze.core.grids.grid import Grid
+from twisty.core.grids.grid import Grid
 
 
 class BinaryTreeTestCase(unittest.TestCase):

@@ -1,8 +1,8 @@
 import os
 import unittest
-from shoze.core.grids.grid import Grid
-from shoze.core.mazes.maze import Maze
-from shoze.exporters.png.maze import PngExporter
+from twisty.core.grids.grid import Grid
+from twisty.core.mazes.maze import Maze
+from twisty.exporters.png.maze import PngExporter
 
 ROWS = 4
 COLUMNS = 4

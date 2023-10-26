@@ -1,12 +1,12 @@
 import heapq
 import unittest
 from unittest.mock import MagicMock, patch
-from shoze.algorithms.base import Algorithm
-from shoze.algorithms.binary_tree import BinaryTree
-from shoze.core.grids.grid import Grid
+from twisty.algorithms.base import Algorithm
+from twisty.algorithms.binary_tree import BinaryTree
+from twisty.core.grids.grid import Grid
 
-from shoze.core.mazes.maze import Maze
-from shoze.utils.config import DEFAULT_ALGORITHM, DEFAULT_EXPORTER
+from twisty.core.mazes.maze import Maze
+from twisty.utils.config import DEFAULT_ALGORITHM, DEFAULT_EXPORTER
 
 ROWS = 4
 COLUMNS = 4

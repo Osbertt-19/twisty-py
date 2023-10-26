@@ -1,11 +1,11 @@
 import io
 import unittest
 from unittest.mock import patch
-from shoze.core.grids.masked_grid import MaskedGrid
-from shoze.core.masks.mask import Mask
+from twisty.core.grids.masked_grid import MaskedGrid
+from twisty.core.masks.mask import Mask
 
-from shoze.core.mazes.masked_maze import MaskedMaze
-from shoze.exporters.ascii.masked_maze import MaskedAsciiExporter
+from twisty.core.mazes.masked_maze import MaskedMaze
+from twisty.exporters.ascii.masked_maze import MaskedAsciiExporter
 
 ROWS = 4
 COLUMNS = 4

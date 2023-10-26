@@ -1,7 +1,7 @@
 from typing import cast
 import unittest
-from shoze.core.cell import Cell
-from shoze.core.grids.grid import Grid
+from twisty.core.cell import Cell
+from twisty.core.grids.grid import Grid
 
 ROW = 4
 COLUMN = 5

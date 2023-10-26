@@ -1,6 +1,6 @@
 import unittest
 
-from shoze.core.masks.mask import Mask
+from twisty.core.masks.mask import Mask
 
 ROWS = 4
 COLUMNS = 4

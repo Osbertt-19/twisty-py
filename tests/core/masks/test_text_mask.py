@@ -1,7 +1,7 @@
 import unittest
 
-from shoze.core.masks.mask import Mask
-from shoze.core.masks.text_mask import TextMask
+from twisty.core.masks.mask import Mask
+from twisty.core.masks.text_mask import TextMask
 
 
 class TextMaskTestCase(unittest.TestCase):
