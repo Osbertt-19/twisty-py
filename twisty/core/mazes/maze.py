@@ -28,7 +28,6 @@ class Maze:
         start: Optional[Point] = None,
         end: Optional[Point] = None,
         algorithm: Algorithm = DEFAULT_ALGORITHM(),
-        sparse: bool = False,
         braid: bool = False,
     ) -> None:
         if not isinstance(algorithm, Algorithm):
@@ -43,13 +42,8 @@ class Maze:
         self.end = self.grid[end] if end else None
 
         self._braid = braid
-        self._sparse = sparse
         if self._braid:
             self.braid()
-        elif self._sparse:
-            self.sparse()
-        else:
-            pass
 
         self._distances: Distances = self._find_distances() if self.start else None
         self._farthest_cell: Cell = self._find_farthest_cell() if self.start else None
