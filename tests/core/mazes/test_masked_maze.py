@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 from shoze.core.grids.masked_grid import MaskedGrid
-from shoze.core.mask import Mask
+from shoze.core.masks.mask import Mask
 
 from shoze.core.mazes.masked_maze import MaskedMaze
 from shoze.utils.config import DEFAULT_MASKED_EXPORTER

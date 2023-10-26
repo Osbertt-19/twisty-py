@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 from shoze.core.grids.grid import Grid
 from shoze.core.grids.masked_grid import MaskedGrid
-from shoze.core.mask import Mask
+from shoze.core.masks.mask import Mask
 from shoze.core.mazes.masked_maze import MaskedMaze
 
 from shoze.core.mazes.maze import Maze

@@ -8,3 +8,4 @@ DEFAULT_EXPORTER = AsciiExporter
 DEFAULT_MASKED_EXPORTER = MaskedAsciiExporter
 
 PNG_OFFSET = 8
+MASK_LETTER = "x"

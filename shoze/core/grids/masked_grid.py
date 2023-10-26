@@ -1,6 +1,6 @@
 from shoze.core.cell import Cell
 from shoze.core.grids.grid import Grid
-from shoze.core.mask import Mask
+from shoze.core.masks.mask import Mask
 
 
 class MaskedGrid(Grid):
