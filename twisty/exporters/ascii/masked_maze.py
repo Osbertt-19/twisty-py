@@ -19,7 +19,7 @@ class MaskedAsciiExporter(AsciiExporter):
 
     def body(self, cell) -> str:
         cell_width = self.cell_width
-        if self.show_distances:
+        if self.show_distances and cell in self.maze.distances:
             body = " " * (cell_width - len(str(self.maze.distances[cell]))) + str(
                 self.maze.distances[cell]
             )

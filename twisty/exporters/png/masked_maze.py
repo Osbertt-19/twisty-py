@@ -37,13 +37,13 @@ class MaskedPngExporter(PngExporter):
                 y2 = (cell.row + 1) * self.cell_size + PNG_OFFSET
 
                 if i == 0:
-                    if self.show_distances and self.exists([cell]):
-                        color = maze.bg_for_cell(cell)
-                    elif (
-                        self.show_path
-                        and cell in maze.path.keys()
+                    if (
+                        self.show_distances
+                        and cell in maze.distances
                         and self.exists([cell])
                     ):
+                        color = maze.bg_for_cell(cell)
+                    elif self.show_path and cell in maze.path and self.exists([cell]):
                         color = maze.bg_for_cell(cell)
                     else:
                         color = WHITE
