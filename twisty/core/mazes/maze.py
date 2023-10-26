@@ -1,3 +1,4 @@
+from random import choice
 from typing import List, Optional, cast
 from twisty.algorithms.base import Algorithm
 from twisty.core.cell import Cell
@@ -27,6 +28,8 @@ class Maze:
         start: Optional[Point] = None,
         end: Optional[Point] = None,
         algorithm: Algorithm = DEFAULT_ALGORITHM(),
+        sparse: bool = False,
+        braid: bool = False,
     ) -> None:
         if not isinstance(algorithm, Algorithm):
             raise ValueError("algorithm must be of type Algorithm ")
@@ -38,6 +41,15 @@ class Maze:
 
         self.start = self.grid[start] if start else None
         self.end = self.grid[end] if end else None
+
+        self._braid = braid
+        self._sparse = sparse
+        if self._braid:
+            self.braid()
+        elif self._sparse:
+            self.sparse()
+        else:
+            pass
 
         self._distances: Distances = self._find_distances() if self.start else None
         self._farthest_cell: Cell = self._find_farthest_cell() if self.start else None
@@ -51,7 +63,7 @@ class Maze:
             new_frontier = []
             for cell in frontier:
                 for linked_cell in cell.links:
-                    if not linked_cell in distances.keys():
+                    if not linked_cell in distances:
                         distances[linked_cell] = cast(int, distances[cell]) + 1
                         new_frontier.append(linked_cell)
                 frontier = new_frontier
@@ -100,6 +112,13 @@ class Maze:
             if len(cell.links) == 1:
                 deadends.append(cell)
         return deadends
+
+    def braid(self) -> None:
+        for deadend in self.deadends:
+            neighbour = choice(deadend.neighbours)
+            while deadend.is_linked(neighbour):
+                neighbour = choice(deadend.neighbours)
+            deadend.link(neighbour)
 
     def export(self, exporter: Exporter = DEFAULT_EXPORTER()) -> "Maze":
         exporter.on(self)
