@@ -55,11 +55,15 @@ class Grid:
             return None
         return cast(Cell, self._grid[row][column])
 
-    def set_cell_at(self, row: int, column: int, value: Cell) -> None:
+    def set_cell_at(self, key: Key, value: Cell) -> None:
+        row, column = key
         self._grid[row][column] = value
 
     def __getitem__(self, key: Key):
         return self.cell_at(key)
+
+    def __setitem__(self, key: Key, value):
+        self.set_cell_at(key, value)
 
     def random_cell(self):
         row = randrange(0, self.rows)
