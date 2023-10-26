@@ -11,9 +11,6 @@ class MaskedGrid(Grid):
     def configure_cells(self):
         for cell in self.each_cell():
             row, column = cell.row, cell.column
-            if not self.mask[row, column]:
-                cell = None
-                continue
             cell.north = self[row - 1, column] if self.mask[row - 1, column] else None
             cell.south = self[row + 1, column] if self.mask[row + 1, column] else None
             cell.west = self[row, column - 1] if self.mask[row, column - 1] else None
