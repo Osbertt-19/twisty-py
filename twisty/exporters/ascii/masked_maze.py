@@ -35,7 +35,7 @@ class MaskedAsciiExporter(AsciiExporter):
         Exporter.on(self, maze)
         self.maze = maze
         cell_width = (
-            len(str(maze.grid.size))
+            max(len(str(maze.grid.size)), 3)
             if self.show_distances or self.show_path
             else self.cell_width
         )

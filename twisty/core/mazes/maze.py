@@ -115,10 +115,11 @@ class Maze:
 
     def braid(self) -> None:
         for deadend in self.deadends:
-            neighbour = choice(deadend.neighbours)
-            while deadend.is_linked(neighbour):
-                neighbour = choice(deadend.neighbours)
-            deadend.link(neighbour)
+            neighbours = deadend.neighbours
+            for link in neighbours:
+                if link in deadend.links:
+                    neighbours.remove(link)
+            deadend.link(choice(neighbours))
 
     def export(self, exporter: Exporter = DEFAULT_EXPORTER()) -> "Maze":
         exporter.on(self)
