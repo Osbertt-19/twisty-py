@@ -81,3 +81,10 @@ class Cell:
 
     def __repr__(self) -> str:
         return f"Cell({self.row},{self.column})"
+
+    def __json__(self) -> dict:
+        return {
+            "row": self.row,
+            "column": self.column,
+            "links": [(link.row, link.column) for link in self.links],
+        }

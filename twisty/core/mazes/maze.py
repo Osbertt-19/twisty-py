@@ -30,12 +30,13 @@ class Maze:
         algorithm: Algorithm = DEFAULT_ALGORITHM(),
         braid: bool = False,
     ) -> None:
-        if not isinstance(algorithm, Algorithm):
+        if not isinstance(algorithm, Algorithm) and algorithm is not None:
             raise ValueError("algorithm must be of type Algorithm ")
-
+        if not isinstance(grid, Grid):
+            raise ValueError("grid must be of type Grid")
         self.grid = grid
-
-        algorithm.on(self.grid)
+        if algorithm:
+            algorithm.on(self.grid)
         self.algorithm = algorithm
 
         self.start = self.grid[start] if start else None
@@ -118,3 +119,6 @@ class Maze:
     def export(self, exporter: Exporter = DEFAULT_EXPORTER()) -> "Maze":
         exporter.on(self)
         return self
+
+    def __json__(self) -> dict:
+        return {"grid": self.grid.__json__()}

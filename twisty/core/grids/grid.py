@@ -73,3 +73,10 @@ class Grid:
 
     def __repr__(self):
         return str(self._grid)
+
+    def __json__(self) -> dict:
+        return {
+            "rows": self.rows,
+            "columns": self.columns,
+            "cells": [cell.__json__() for cell in self.each_cell()],
+        }
