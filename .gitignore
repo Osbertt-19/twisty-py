@@ -6,3 +6,6 @@ images/
 *.pyc 
 *.pyo
 main.py
+*.json
+mask.txt
+to-do.txt
