@@ -13,6 +13,8 @@ from tests.exporters.ascii.maze import AsciiTestCase
 from tests.exporters.png.masked_maze import MaskedPngTestCase
 from tests.exporters.png.maze import PngTestCase
 from tests.goals import GoalsTestCase
+from tests.json.test_dump import DumpJsonTestCase
+from tests.json.test_load import LoadJsonTestCase
 
 
 def core_suite() -> unittest.TestSuite:
@@ -41,6 +43,12 @@ def exporter_suite() -> unittest.TestSuite:
     return suite
 
 
+def json_suite() -> unittest.TestSuite:
+    suite = unittest.TestSuite()
+    suite.addTests(DumpJsonTestCase, LoadJsonTestCase)
+    return suite
+
+
 def goals_suite() -> unittest.TestSuite:
     suite = unittest.TestSuite()
     suite.addTests(GoalsTestCase)
@@ -51,6 +59,7 @@ if __name__ == "__main__":
     unittest.TextTestRunner().run(algorithms_suite())
     unittest.TextTestRunner().run(exporter_suite())
     unittest.TextTestRunner().run(goals_suite())
+    unittest.TextTestRunner().run(json_suite())
 
 
 # python3 -m unittest -v tests/test.py

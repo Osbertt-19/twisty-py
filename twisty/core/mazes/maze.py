@@ -122,3 +122,6 @@ class Maze:
 
     def __json__(self) -> dict:
         return {"grid": self.grid.__json__()}
+
+    def __eq__(self, maze: "Maze") -> bool:
+        return self.grid == maze.grid

@@ -80,3 +80,10 @@ class Grid:
             "columns": self.columns,
             "cells": [cell.__json__() for cell in self.each_cell()],
         }
+
+    def __eq__(self, grid: "Grid") -> bool:
+        for self_cell in self.each_cell():
+            grid_cell = grid[self_cell.row, self_cell.column]
+            if self_cell.links != grid_cell.links:
+                return False
+        return True

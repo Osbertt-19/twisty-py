@@ -22,7 +22,7 @@ class MazeTestCase(unittest.TestCase):
 
     def test_constructor_invalid_args(self) -> None:
         with self.assertRaises(ValueError) as e:
-            maze = Maze((ROWS, COLUMNS), algorithm=1)
+            maze = Maze(Grid(ROWS, COLUMNS), algorithm=1)
             assert str(e.exception) == "algorithm must be of type Algorithm "
 
     def test_constructor(self) -> None:  # no start, no end
@@ -54,7 +54,7 @@ class MazeTestCase(unittest.TestCase):
 
     @patch.object(DEFAULT_ALGORITHM, "on")
     def test_algorithm(self, mock_algo: MagicMock) -> None:
-        maze = Maze((ROWS, COLUMNS))
+        maze = Maze(Grid(ROWS, COLUMNS))
         mock_algo.assert_called_once_with(maze.grid)
 
     def test_distances(self) -> None:
