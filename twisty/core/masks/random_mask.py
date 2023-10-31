@@ -3,12 +3,11 @@ from typing import Dict, List, Tuple
 from twisty.core.masks.mask import Mask
 from twisty.utils.types import Point
 
-# Random sparse maze
 # might make unreachable cells
 # cannot use it with start,end and distances,
 
 
-class SparseMask(Mask):
+class RandomMask(Mask):
     def __init__(
         self,
         rows: int,
