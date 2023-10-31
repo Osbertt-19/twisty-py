@@ -35,3 +35,14 @@ class MaskedGrid(Grid):
         if cell.west:
             cell.west.east = None
             cell.west.unlink(cell)
+
+    def unkill(self, cell: Cell) -> None:
+        self.mask[cell.row, cell.column] = True
+        if cell.north:
+            cell.north.south = cell
+        if cell.south:
+            cell.south.north = cell
+        if cell.east:
+            cell.east.west = cell
+        if cell.west:
+            cell.west.east = cell

@@ -1,5 +1,5 @@
 from random import randint
-from typing import Optional, cast
+from typing import List, Optional, cast
 from twisty.algorithms.base import Algorithm
 from twisty.core.cell import Cell
 from twisty.core.grids.grid import Grid
@@ -52,15 +52,22 @@ class MaskedMaze(Maze):
         self._path: Distances = self._find_path() if self.start and self.end else None
 
     @staticmethod
+    def not_exceptions(cell: Cell, exceptions: List[Optional[Cell]]) -> bool:
+        for e in exceptions:
+            if e and cell == e:
+                return False
+        return True
+
+    @staticmethod
     def is_deadend(cell: Cell) -> bool:
         return len(cell.links) == 1
 
     def kill(self, cell: Cell) -> None:
         for link in cell.links:
             link = link
-        if cell != self.start and cell != self.end:
+        if self.not_exceptions(cell, [self.start, self.end]) and randint(0, 5) != 0:
             self.grid.kill(cell)
-        if self.is_deadend(link) and randint(0, 5) != 0:
+        if self.is_deadend(link):
             self.kill(link)
 
     def sparse(self) -> None:
