@@ -1,6 +1,5 @@
 from random import choice
 from typing import Dict, List, Optional
-import warnings
 
 
 class Cell:
@@ -55,11 +54,7 @@ class Cell:
     def unlink(self, cell: "Cell", bidirectionally: bool = True) -> None:
         if not isinstance(cell, Cell):
             raise ValueError("Unlink can only be made between two cells")
-        elif not self.is_linked(cell):
-            warnings.warn(
-                f"Cell({self.row},{self.column}) and Cell({cell.row},{cell.column}) are not linked"
-            )
-        else:
+        elif self.is_linked(cell):
             del self._links[cell]
             if bidirectionally:
                 cell.unlink(self, False)

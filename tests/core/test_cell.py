@@ -1,5 +1,4 @@
 import unittest
-import warnings
 
 from twisty.core.cell import Cell
 
@@ -74,11 +73,3 @@ class CellTestCase(unittest.TestCase):
         with self.assertRaises(ValueError) as e:
             self.cell_1.unlink(1)
             assert str(e.exception) == "Unlink can only be made between two cells"
-
-        with warnings.catch_warnings(record=True) as w:
-            self.cell_1.unlink(self.cell_3)
-            assert len(w) == 1
-            assert (
-                str(w[0].message)
-                == f"Cell({self.cell_1.row},{self.cell_1.column}) and Cell({self.cell_3.row},{self.cell_3.column}) are not linked"
-            )
