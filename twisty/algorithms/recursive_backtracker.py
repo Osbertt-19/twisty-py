@@ -12,10 +12,6 @@ class RecursiveBacktracker(Algorithm):
     def on(self, grid: Grid) -> None:
         if self.starting_cell is None:
             self.starting_cell = grid.random_cell()
-        if not isinstance(self.starting_cell, Cell):
-            ValueError(
-                "Starting point of the algorithm must be a valid cell in the grid"
-            )
 
         walked_path: List[Cell] = []
         walked_path.append(self.starting_cell)

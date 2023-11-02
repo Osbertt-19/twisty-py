@@ -10,9 +10,7 @@ class AldousBroder(Algorithm):
         while unvisited_count > 0:
             neighbour = current_cell.random_neighbour()
             if neighbour is None:
-                raise ValueError(
-                    "Aldous-Broder algorithm needs all cells to have at least one neighbour"
-                )
+                raise ValueError(f"{current_cell} has no neighbour")
             if len(neighbour.links) == 0:
                 current_cell.link(neighbour)
                 unvisited_count -= 1
