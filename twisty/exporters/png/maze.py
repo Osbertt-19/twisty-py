@@ -5,7 +5,7 @@ from twisty.exporters.base import Exporter
 from twisty.utils.colors import BLACK, WHITE, Color
 from PIL import Image, ImageDraw
 
-from twisty.utils.config import PNG_OFFSET
+from twisty.utils.config import PNG_FOLDER, PNG_OFFSET
 
 
 class PngExporter(Exporter):
@@ -35,9 +35,9 @@ class PngExporter(Exporter):
         if self.filepath:
             image.save(self.filepath, "PNG", optimize=True)
             return
-        if not os.path.exists("images"):
+        if not os.path.exists(PNG_FOLDER):
             os.makedirs("images")
-        image.save(f"images/{self.filename}.png", "PNG", optimize=True)
+        image.save(f"{PNG_FOLDER}/{self.filename}.png", "PNG", optimize=True)
 
     def _render_image(self, maze: Maze):
         image_width = (self.cell_size * maze.grid.columns) + (PNG_OFFSET * 2)
