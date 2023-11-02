@@ -51,7 +51,7 @@ class Maze:
 
         self._path: Distances = self._find_path() if self.start and self.end else None
 
-    def _find_distances(self):
+    def _find_distances(self) -> Distances:
         distances: Distances = {self.start: 0}
         frontier: List[Cell] = [self.start]
         while len(frontier) > 0:
@@ -75,7 +75,7 @@ class Maze:
                     current = neighbour
         return path
 
-    def _find_farthest_cell(self):
+    def _find_farthest_cell(self) -> Cell:
         mx = 0
         farthest_cell = self.start
         for cell in self._distances:

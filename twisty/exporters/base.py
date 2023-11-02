@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from twisty.core.mazes.maze import Maze
@@ -24,5 +24,5 @@ class Exporter(metaclass=ABCMeta):
             raise ValueError("Mazes with no start or no end cannot show the path")
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.__class__.__name__

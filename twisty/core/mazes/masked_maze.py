@@ -1,16 +1,13 @@
 from random import randint
-from typing import List, Optional, cast
+from typing import List, Optional
 from twisty.algorithms.base import Algorithm
 from twisty.core.cell import Cell
-from twisty.core.grids.grid import Grid
 from twisty.core.grids.masked_grid import MaskedGrid
 from twisty.core.masks.sparse_mask import SparseMask
 from twisty.core.mazes.maze import Maze
-from twisty.exporters.ascii.masked_maze import MaskedAsciiExporter
 from twisty.exporters.base import Exporter
 from twisty.utils.config import (
     DEFAULT_ALGORITHM,
-    DEFAULT_EXPORTER,
     DEFAULT_MASKED_EXPORTER,
 )
 from twisty.utils.types import Distances, Point

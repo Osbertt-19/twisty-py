@@ -3,7 +3,7 @@ from twisty.utils.config import MASK_LETTER
 
 
 class TextMask(Mask):
-    def __init__(self, textfile) -> None:
+    def __init__(self, textfile: str) -> None:
         with open(textfile, "r") as file:
             lines = file.read()
 

@@ -1,12 +1,9 @@
 from random import randint
 from typing import List
-from twisty.algorithms.base import Algorithm
 from twisty.core.grids.masked_grid import MaskedGrid
 from twisty.core.masks.mask import Mask
-from twisty.core.masks.sparse_mask import SparseMask
 from twisty.core.mazes.masked_maze import MaskedMaze
 from twisty.dungeon.room import Room
-from twisty.utils.config import DEFAULT_ALGORITHM
 from twisty.utils.types import Point
 
 

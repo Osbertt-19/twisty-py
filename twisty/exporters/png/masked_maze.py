@@ -1,11 +1,8 @@
-from time import gmtime, strftime
 from typing import List
 from twisty.core.cell import Cell
 from twisty.core.mazes.masked_maze import MaskedMaze
-from twisty.core.mazes.maze import Maze
-from twisty.exporters.base import Exporter
 from twisty.exporters.png.maze import PngExporter
-from twisty.utils.colors import BLACK, WHITE, Color
+from twisty.utils.colors import WHITE
 from PIL import Image, ImageDraw
 
 from twisty.utils.config import PNG_OFFSET
@@ -18,7 +15,7 @@ class MaskedPngExporter(PngExporter):
                 return True
         return False
 
-    def _render_image(self, maze: MaskedMaze):
+    def _render_image(self, maze: MaskedMaze) -> Image:
         self.maze = maze
         image_width = (self.cell_size * maze.grid.columns) + (
             PNG_OFFSET * 2

@@ -27,10 +27,10 @@ class Grid:
         self._grid: List[List[Cell]] = self.prepare_grid()
         self.configure_cells()
 
-    def prepare_grid(self):
+    def prepare_grid(self) -> List[List[Cell]]:
         return [[Cell(i, j) for j in range(self.columns)] for i in range(self.rows)]
 
-    def configure_cells(self):
+    def configure_cells(self) -> None:
         for cell in self.each_cell():
             row, column = cell.row, cell.column
             cell.north = self[row - 1, column]
@@ -38,11 +38,11 @@ class Grid:
             cell.west = self[row, column - 1]
             cell.east = self[row, column + 1]
 
-    def each_row(self):
+    def each_row(self) -> List[Cell]:
         for row in range(self.rows):
             yield self._grid[row]
 
-    def each_cell(self):
+    def each_cell(self) -> Cell:
         for row in self.each_row():
             for cell in row:
                 yield cell
@@ -59,19 +59,19 @@ class Grid:
         row, column = key
         self._grid[row][column] = value
 
-    def __getitem__(self, key: Key):
+    def __getitem__(self, key: Key) -> Optional[Cell]:
         return self.cell_at(key)
 
-    def __setitem__(self, key: Key, value):
+    def __setitem__(self, key: Key, value) -> None:
         self.set_cell_at(key, value)
 
-    def random_cell(self):
+    def random_cell(self) -> Cell:
         row = randrange(0, self.rows)
         column = randrange(0, self.columns)
         cell: Cell = self[row, column]
         return cell
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self._grid)
 
     def __json__(self) -> dict:

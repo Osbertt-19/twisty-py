@@ -39,7 +39,7 @@ class PngExporter(Exporter):
             os.makedirs("images")
         image.save(f"{PNG_FOLDER}/{self.filename}.png", "PNG", optimize=True)
 
-    def _render_image(self, maze: Maze):
+    def _render_image(self, maze: Maze) -> Image:
         image_width = (self.cell_size * maze.grid.columns) + (PNG_OFFSET * 2)
         image_height = (self.cell_size * maze.grid.rows) + (PNG_OFFSET * 2)
 

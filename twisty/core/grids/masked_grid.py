@@ -1,7 +1,6 @@
 from twisty.core.cell import Cell
 from twisty.core.grids.grid import Grid
 from twisty.core.masks.mask import Mask
-from twisty.utils.types import Point
 
 
 class MaskedGrid(Grid):
@@ -9,7 +8,7 @@ class MaskedGrid(Grid):
         self.mask = mask
         super().__init__(self.mask.rows, self.mask.columns)
 
-    def configure_cells(self):
+    def configure_cells(self) -> None:
         for cell in self.each_cell():
             row, column = cell.row, cell.column
             cell.north = self[row - 1, column] if self.mask[row - 1, column] else None
@@ -17,7 +16,7 @@ class MaskedGrid(Grid):
             cell.west = self[row, column - 1] if self.mask[row, column - 1] else None
             cell.east = self[row, column + 1] if self.mask[row, column + 1] else None
 
-    def random_cell(self) -> "Cell":
+    def random_cell(self) -> Cell:
         row, column = self.mask.random_location()
         return self[row, column]
 

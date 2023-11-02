@@ -6,7 +6,7 @@ from twisty.core.grids.grid import Grid
 
 
 class SideWinder(Algorithm):
-    def on(self, grid: Grid):
+    def on(self, grid: Grid) -> None:
         for row in grid.each_row():
             run = []
             for cell in row:
