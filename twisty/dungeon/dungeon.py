@@ -10,6 +10,9 @@ from twisty.utils.config import DEFAULT_ALGORITHM
 from twisty.utils.types import Point
 
 
+# Rooms can be overlap
+
+
 class Dungeon:
     def __init__(self, dimensions: Point, rooms: List[Room]) -> None:
         rows, columns = dimensions
@@ -23,8 +26,7 @@ class Dungeon:
         column1 = randint(0, self.maze.grid.columns - room.columns)
         row2 = row1 + room.rows
         column2 = column1 + room.columns
-        print(row1, row2)
-        print(column1, column2)
+
         for i in range(row1, row2):
             for j in range(column1, column2):
                 self.maze.grid.kill(self.maze.grid[i, j])
