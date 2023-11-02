@@ -47,13 +47,16 @@ class Cell:
     def link(self, cell: "Cell", bidirectionally: bool = True) -> None:
         if not isinstance(cell, Cell):
             raise ValueError("Link can only be made between two cells")
+
         self._links[cell] = True
+
         if bidirectionally:
             cell.link(self, False)
 
     def unlink(self, cell: "Cell", bidirectionally: bool = True) -> None:
         if not isinstance(cell, Cell):
             raise ValueError("Unlink can only be made between two cells")
+
         elif self.is_linked(cell):
             del self._links[cell]
             if bidirectionally:

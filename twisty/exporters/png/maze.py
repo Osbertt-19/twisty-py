@@ -32,16 +32,23 @@ class PngExporter(Exporter):
     def on(self, maze: Maze) -> None:
         super().on(maze)
         image = self._render_image(maze)
+
         if self.filepath:
             image.save(self.filepath, "PNG", optimize=True)
             return
+
         if not os.path.exists(PNG_FOLDER):
             os.makedirs("images")
+
         image.save(f"{PNG_FOLDER}/{self.filename}.png", "PNG", optimize=True)
 
     def _render_image(self, maze: Maze) -> Image:
-        image_width = (self.cell_size * maze.grid.columns) + (PNG_OFFSET * 2)
-        image_height = (self.cell_size * maze.grid.rows) + (PNG_OFFSET * 2)
+        image_width = (self.cell_size * maze.grid.columns) + (
+            PNG_OFFSET * 2
+        )  # offset to both sides
+        image_height = (self.cell_size * maze.grid.rows) + (
+            PNG_OFFSET * 2
+        )  # offset to top and bottom
 
         image = Image.new("RGBA", (image_width, image_height), self.background_color)
         draw = ImageDraw.Draw(image)
@@ -52,6 +59,7 @@ class PngExporter(Exporter):
                 x2 = (cell.column + 1) * self.cell_size + PNG_OFFSET
                 y2 = (cell.row + 1) * self.cell_size + PNG_OFFSET
 
+                # fill colors for distances and paths
                 if i == 0:
                     if self.show_distances:
                         color = maze.bg_for_cell(cell)

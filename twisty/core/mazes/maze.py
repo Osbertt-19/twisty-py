@@ -85,6 +85,7 @@ class Maze:
 
         return farthest_cell
 
+    # used in png exporters
     def bg_for_cell(self, cell: Cell) -> Color:
         MAX_DARK, MAX_BRIGHT, MAX_BRIGHT_INTENSITY = get_max_colors()
         mx = self._distances[self._farthest_cell]
@@ -108,6 +109,7 @@ class Maze:
                 deadends.append(cell)
         return deadends
 
+    # removing deadends by linking it to one of its neighbours
     def braid(self) -> None:
         for deadend in self.deadends:
             neighbours = deadend.neighbours

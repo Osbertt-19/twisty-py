@@ -9,6 +9,8 @@ from twisty.utils.config import PNG_OFFSET
 
 
 class MaskedPngExporter(PngExporter):
+    # check if a certain line is supposed to be drawn
+    # the line will be drawn if one of its surrounding cells has a true mask
     def exists(self, cells: List[Cell]) -> bool:
         for cell in cells:
             if cell and self.maze.grid.mask[cell.row, cell.column]:
@@ -33,6 +35,7 @@ class MaskedPngExporter(PngExporter):
                 x2 = (cell.column + 1) * self.cell_size + PNG_OFFSET
                 y2 = (cell.row + 1) * self.cell_size + PNG_OFFSET
 
+                # fill colors for distances and paths
                 if i == 0:
                     if (
                         self.show_distances

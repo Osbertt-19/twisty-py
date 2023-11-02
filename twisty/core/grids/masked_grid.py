@@ -8,6 +8,8 @@ class MaskedGrid(Grid):
         self.mask = mask
         super().__init__(self.mask.rows, self.mask.columns)
 
+    # Set neighbours to cells
+    # Set None if mask[cell] is False
     def configure_cells(self) -> None:
         for cell in self.each_cell():
             row, column = cell.row, cell.column
@@ -16,10 +18,14 @@ class MaskedGrid(Grid):
             cell.west = self[row, column - 1] if self.mask[row, column - 1] else None
             cell.east = self[row, column + 1] if self.mask[row, column + 1] else None
 
+    # only give cells with True mask
     def random_cell(self) -> Cell:
         row, column = self.mask.random_location()
         return self[row, column]
 
+    # set False to mask[cell]
+    # set None to its neighbour
+    # unlink its neighbours
     def kill(self, cell: Cell) -> None:
         self.mask[cell.row, cell.column] = False
         if cell.north:
@@ -35,6 +41,7 @@ class MaskedGrid(Grid):
             cell.west.east = None
             cell.west.unlink(cell)
 
+    # reverse self.kill(cell) but with no links
     def unkill(self, cell: Cell) -> None:
         self.mask[cell.row, cell.column] = True
         if cell.north:

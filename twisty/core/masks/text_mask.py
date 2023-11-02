@@ -10,13 +10,11 @@ class TextMask(Mask):
         lines = lines.split("\n")
         rows = len(lines)
         columns = len(lines[0])
+
         super().__init__(rows, columns)
 
-        row = 0
-        while row < len(lines):
-            column = 0
-            while column < len(lines[row]):
+        # Set False to mask[cell] if text[cell] is MASK_LETTER
+        for row in range(len(lines)):
+            for column in range(len(lines[row])):
                 if lines[row][column] == MASK_LETTER:
                     self[row, column] = False
-                column += 1
-            row += 1

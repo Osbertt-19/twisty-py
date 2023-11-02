@@ -17,17 +17,20 @@ class AsciiExporter(Exporter):
 
     def on(self, maze: Maze) -> None:
         super().on(maze)
+
         cell_width = (
             max(len(str(maze.grid.size)), 3)
             if self.show_distances or self.show_path
             else self.cell_width
         )
 
+        # topmost line
         output = "+" + ("-" * cell_width + "+") * maze.grid.columns + "\n"
         for row in maze.grid.each_row():
             top = "|"
             bottom = "+"
             for cell in row:
+                # for distances and paths
                 if self.show_distances:
                     body = " " * (cell_width - len(str(maze.distances[cell]))) + str(
                         maze.distances[cell]

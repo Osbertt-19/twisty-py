@@ -30,6 +30,7 @@ class Grid:
     def prepare_grid(self) -> List[List[Cell]]:
         return [[Cell(i, j) for j in range(self.columns)] for i in range(self.rows)]
 
+    # Set neighbours to cells
     def configure_cells(self) -> None:
         for cell in self.each_cell():
             row, column = cell.row, cell.column
@@ -38,11 +39,11 @@ class Grid:
             cell.west = self[row, column - 1]
             cell.east = self[row, column + 1]
 
-    def each_row(self) -> List[Cell]:
+    def each_row(self):
         for row in range(self.rows):
             yield self._grid[row]
 
-    def each_cell(self) -> Cell:
+    def each_cell(self):
         for row in self.each_row():
             for cell in row:
                 yield cell

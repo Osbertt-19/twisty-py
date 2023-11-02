@@ -11,12 +11,15 @@ from twisty.exporters.base import Exporter
 
 
 class MaskedAsciiExporter(AsciiExporter):
+    # check if a certain line is supposed to be drawn
+    # the line will be drawn if one of its surrounding cells has a true mask
     def exists(self, cells: List[Cell]) -> bool:
         for cell in cells:
             if cell and self.maze.grid.mask[cell.row, cell.column]:
                 return True
         return False
 
+    # body of a certain cell; fill its distance to show distances and paths
     def body(self, cell) -> str:
         cell_width = self.cell_width
         if self.show_distances and cell in self.maze.distances:
@@ -34,17 +37,19 @@ class MaskedAsciiExporter(AsciiExporter):
     def on(self, maze: MaskedMaze) -> None:
         Exporter.on(self, maze)
         self.maze = maze
+
         cell_width = (
             max(len(str(maze.grid.size)), 3)
             if self.show_distances or self.show_path
             else self.cell_width
         )
         self.cell_width = cell_width
-        H = "-" * cell_width
-        V = "|"
-        I = "+"
-        S = " "
-        SS = " " * cell_width
+
+        H = "-" * cell_width  # horizontal line
+        V = "|"  # vertical line
+        I = "+"  # intersection
+        S = " "  # space for vertical line and intersection
+        SS = " " * cell_width  # space for body
         output = ""
 
         # Topmost line

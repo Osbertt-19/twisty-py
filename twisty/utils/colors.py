@@ -7,6 +7,7 @@ BLACK: Color = (0, 0, 0)
 WHITE: Color = (255, 255, 255)
 
 
+# color with max intensity for show distances and paths
 def get_max_colors() -> Color:
     MAX_DARK = 210
     MAX_BRIGHT = round(MAX_DARK / 2)
