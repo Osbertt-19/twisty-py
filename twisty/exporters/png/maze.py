@@ -1,3 +1,4 @@
+import os
 from time import gmtime, strftime
 from twisty.core.mazes.maze import Maze
 from twisty.exporters.base import Exporter
@@ -33,6 +34,9 @@ class PngExporter(Exporter):
         image = self._render_image(maze)
         if self.filepath:
             image.save(self.filepath, "PNG", optimize=True)
+            return
+        if not os.path.exists("images"):
+            os.makedirs("images")
         image.save(f"images/{self.filename}.png", "PNG", optimize=True)
 
     def _render_image(self, maze: Maze):
