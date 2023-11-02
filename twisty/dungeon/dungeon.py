@@ -2,6 +2,7 @@ from random import randint
 from typing import List
 from twisty.algorithms.base import Algorithm
 from twisty.core.grids.masked_grid import MaskedGrid
+from twisty.core.masks.mask import Mask
 from twisty.core.masks.sparse_mask import SparseMask
 from twisty.core.mazes.masked_maze import MaskedMaze
 from twisty.dungeon.room import Room
@@ -12,7 +13,7 @@ from twisty.utils.types import Point
 class Dungeon:
     def __init__(self, dimensions: Point, rooms: List[Room]) -> None:
         rows, columns = dimensions
-        self.maze = MaskedMaze(MaskedGrid(SparseMask(rows, columns)))
+        self.maze = MaskedMaze(MaskedGrid(Mask(rows, columns)))
 
         for room in rooms:
             self.process_room(room)
